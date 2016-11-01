@@ -1,0 +1,34 @@
+[
+  {
+    "build_id": 1234,
+    "owner": "jtuck",
+    "time_started": 1477960740156,
+    "state": "in_progress",
+    "percentage_complete": 77.1,
+    "metrics": {
+      "test": 64,
+      "maintainability": 53,
+      "security": 64,
+      "workmanship": 72
+    },
+    "build": [
+      "debug",
+      "release"
+    ],
+    "unit_test": {
+      "passed": 142,
+      "failed": 10,
+      "covered_percentage": 76.0
+    },
+    "functional_test": {
+      "passed": 142,
+      "failed": 10,
+      "covered_percentage": 76.0
+    },
+    "result": {
+      "change_was_accepted": true,
+      "status": "auto-merged",
+      "is_complete": true
+    }
+  }
+]
