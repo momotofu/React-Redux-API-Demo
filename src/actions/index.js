@@ -1,64 +1,65 @@
 import fetch from 'isomorphic-fetch'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
-export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
+/**
+  constanst
+  */
 
-export function selectSubreddit(subreddit) {
-  return {
-    type: SELECT_SUBREDDIT,
-    subreddit
-  }
-}
+export const REQUEST_HISTORY = 'REQUEST_HISTORY'
+export const RECEIVE_HISTORY = 'RECEIVE_HISTORY'
+export const INVALIDATE_REQUEST = 'INVALIDATE_REQUEST'
 
-export function invalidateSubreddit(subreddit) {
-  return {
-    type: INVALIDATE_SUBREDDIT,
-    subreddit
-  }
-}
+/**
+  async handlers
+  */
 
-function requestPosts(subreddit) {
-  return {
-    type: REQUEST_POSTS,
-    subreddit
-  }
-}
-
-function receivePosts(subreddit, json) {
-  return {
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  }
-}
-
-function fetchPosts(subreddit) {
+function fetchHistory() {
   return dispatch => {
-    dispatch(requestPosts(subreddit))
-    return fetch(`http://www.reddit.com/r/${subreddit}.json`)
+    dispatch(requestHistory())
+    return fetch('http://private-29abaa-tenrox.apiary-mock.com/changelist')
       .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)))
+      .then(json => dispatch(receiveHistory(json)))
   }
 }
 
-function shouldFetchPosts(state, subreddit) {
-  const posts = state.postsBySubreddit[subreddit]
-  if (!posts) {
-    return true
-  } else if (posts.isFetching) {
+function shouldFetchHistory(state) {
+  const history = state.projectHistory.items
+  if (history.isFetching) {
     return false
+  } else if (noHistory.length === 0) {
+    return true
   } else {
-    return posts.didInvalidate
+    return history.didInvalidate
   }
 }
 
-export function fetchPostsIfNeeded(subreddit) {
+export function fetchHistoryIfNeeded() {
   return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), subreddit)) {
-      return dispatch(fetchPosts(subreddit))
+    if (shouldFetchHistory(getState())) {
+      return dispatch(fetchHistory())
     }
+  }
+}
+
+/**
+  affordances
+  */
+
+export function invalidateRequest() {
+  return {
+    type: INVALIDATE_REQUEST,
+  }
+}
+
+function requestHistory() {
+  return {
+    type: REQUEST_HISTORY
+  }
+}
+
+function receiveHistory(json) {
+  return {
+    type: RECEIVE_HISTORY,
+    history: json,
+    receivedAt: Date.now()
   }
 }

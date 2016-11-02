@@ -1,58 +1,36 @@
-import * as ActionTypes from '../actions'
+import * as ACTIONS from '../actions'
 import { combineReducers } from 'redux'
 
-function selectedSubreddit(state = 'reactjs', action) {
-  switch (action.type) {
-  case ActionTypes.SELECT_SUBREDDIT:
-    return action.subreddit
-  default:
-    return state
-  }
-}
-
-function posts(state = {
+function projectHistory(state = {
   isFetching: false,
   didInvalidate: false,
   items: []
 }, action) {
   switch (action.type) {
-    case ActionTypes.INVALIDATE_SUBREDDIT:
+    case ACTIONS.INVALIDATE_REQUEST:
       return Object.assign({}, state, {
         didInvalidate: true
       })
-    case ActionTypes.REQUEST_POSTS:
+    case ACTIONS.REQUEST_HISTORY:
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: false
       })
-    case ActionTypes.RECEIVE_POSTS:
+    case ACTIONS.RECEIVE_HISTORY:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        items: action.posts,
-        lastUpdated: action.receivedAt
+        items: action.history,
+        lastUpdated: action.timeStamp
       })
     default:
       return state
   }
 }
 
-function postsBySubreddit(state = { }, action) {
-  switch (action.type) {
-    case ActionTypes.INVALIDATE_SUBREDDIT:
-    case ActionTypes.RECEIVE_POSTS:
-    case ActionTypes.REQUEST_POSTS:
-      return Object.assign({}, state, {
-        [action.subreddit]: posts(state[action.subreddit], action)
-      })
-    default:
-      return state
-  }
-}
 
 const rootReducer = combineReducers({
-  postsBySubreddit,
-  selectedSubreddit
+  projectHistory
 })
 
 export default rootReducer

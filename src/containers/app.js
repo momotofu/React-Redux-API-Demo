@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
-import Picker from '../components/Picker'
-import Posts from '../components/Posts'
+import { fetchHistoryIfNeeded, invalidateRequest } from '../actions'
+// import Picker from '../components/Picker'
+// import Posts from '../components/Posts'
 
 class App extends Component {
   constructor(props) {
@@ -12,19 +12,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    const { dispatch } = this.props
+    dispatch(fetchHistoryIfNeeded())
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
-      const { dispatch, selectedSubreddit } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedSubreddit))
-    }
+    const { dispatch } = this.props
+    dispatch(fetchHistoryIfNeeded())
   }
 
   handleChange(nextSubreddit) {
-    this.props.dispatch(selectSubreddit(nextSubreddit))
+    // this.props.dispatch(selectSubreddit(nextSubreddit))
   }
 
   handleRefreshClick(e) {
@@ -39,10 +37,10 @@ class App extends Component {
     const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
     return (
       <div>
-        <Picker value={selectedSubreddit}
+        {/* <Picker value={selectedSubreddit}
                 onChange={this.handleChange}
-                options={[ 'reactjs', 'frontend' ]} />
-        <p>
+                options={[ 'reactjs', 'frontend' ]} />*/}
+          <p>
           {lastUpdated &&
             <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
@@ -64,7 +62,7 @@ class App extends Component {
         }
         {posts.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Posts posts={posts} />
+            {/* <Posts posts={posts} /> */}
           </div>
         }
       </div>
@@ -73,7 +71,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  selectedSubreddit: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
@@ -81,18 +78,16 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { selectedSubreddit, postsBySubreddit } = state
   const {
     isFetching,
     lastUpdated,
     items: posts
-  } = postsBySubreddit[selectedSubreddit] || {
+  } = state.items || {
     isFetching: true,
     items: []
   }
 
   return {
-    selectedSubreddit,
     posts,
     isFetching,
     lastUpdated
