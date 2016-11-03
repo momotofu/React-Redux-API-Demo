@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { fetchHistoryIfNeeded, invalidateRequest } from '../actions'
-// import Picker from '../components/Picker'
-// import Posts from '../components/Posts'
+import { fetchHistoryIfNeeded, invalidateRequest, toggleAccordionItem } from '../actions'
+import HistoryAccordion from '../components/history-accordion'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleItemClick = this.handleItemClick.bind(this)
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
   }
 
@@ -17,29 +16,27 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch } = this.props
+    const { dispatch } = nextProps
     dispatch(fetchHistoryIfNeeded())
   }
 
-  handleChange(nextSubreddit) {
-    // this.props.dispatch(selectSubreddit(nextSubreddit))
+  handleItemClick(id) {
+    const { dispatch } = this.props
+    dispatch(toggleAccordionItem(id))
   }
 
   handleRefreshClick(e) {
     e.preventDefault()
 
     const { dispatch, selectedSubreddit } = this.props
-    dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    dispatch(invalidateRequest())
+    dispatch(fetchHistoryIfNeeded())
   }
 
   render() {
-    const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
+    const { items, isFetching, lastUpdated } = this.props
     return (
       <div>
-        {/* <Picker value={selectedSubreddit}
-                onChange={this.handleChange}
-                options={[ 'reactjs', 'frontend' ]} />*/}
           <p>
           {lastUpdated &&
             <span>
@@ -54,15 +51,15 @@ class App extends Component {
             </a>
           }
         </p>
-        {isFetching && posts.length === 0 &&
+        {isFetching && items.length === 0 &&
           <h2>Loading...</h2>
         }
-        {!isFetching && posts.length === 0 &&
+        {!isFetching && items.length === 0 &&
           <h2>Empty.</h2>
         }
-        {posts.length > 0 &&
+        {items.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            {/* <Posts posts={posts} /> */}
+            <HistoryAccordion accordionItems={items} onItemClick={this.handleItemClick} />
           </div>
         }
       </div>
@@ -71,7 +68,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  posts: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
@@ -81,14 +78,14 @@ function mapStateToProps(state) {
   const {
     isFetching,
     lastUpdated,
-    items: posts
-  } = state.items || {
+    items: items
+  } = state.projectHistory || {
     isFetching: true,
     items: []
   }
 
   return {
-    posts,
+    items,
     isFetching,
     lastUpdated
   }

@@ -1,0 +1,93 @@
+@import '../../styles/color'
+
+.Accordion
+  &-container
+    max-width 497px
+    width 100%
+    z-index 1
+    outline 1px solid rust
+
+  &-item
+    position relative
+    background charcoal
+    &-signifierD
+      font-size 11px
+      font-weight 400
+      margin-right 1rem
+      &-disabled
+        opacity .5
+        pointer-events none
+        cursor default
+    &-description
+      max-height 4rem
+      padding 1rem
+      box-sizing border-box
+      overflow hidden
+      line-height 1.2
+      transition padding .3s ease
+      &-open
+        padding-top 5rem
+        max-height 100%
+    &-paragraph
+      color bubbleBath
+      opacity .5
+      font-size 12px
+      margin-top .5rem
+      line-height 1.4
+      display block
+
+  &-item-tab
+    -webkit-box-shadow 0px 4px 9px 0 rgba(12, 3, 24, .2)
+    -moz-box-shadow 0px 4px 9px 0 rgba(12, 3, 24, .2)
+    box-shadow 0px 4px 9px 0 rgba(12, 3, 24, .2)
+    align-items center
+    background hauntar
+    outline 1px solid rust
+    box-sizing border-box
+    display flex
+    min-height 4rem
+    position absolute
+    width 100%
+    z-index 10
+    &-label
+      display flex
+      flex-direction column
+      margin-left 1rem
+      &-title
+        color tangerine
+        font-weight bold
+        font-size 13px
+        margin-bottom .25rem
+      &-sub
+        color rust
+        font-size 12px
+    &-signifier
+      background none
+      border none
+      height 32px
+      margin-right 0
+      top 7px
+      outline none
+      padding 10px
+      position absolute
+      right 8px
+      width 32px
+      &:after
+        -ms-transform rotate(45deg)
+        -webkit-transform rotate(45deg)
+        animation-duration 2.5s
+        border 2px solid
+        border-left 2px solid transparent
+        border-radius 2px
+        border-top 2px solid transparent
+        content ''
+        display block
+        height 8px
+        margin-top -5px
+        transform rotate(45deg)
+        width 8px
+      &-open
+        -ms-transform rotate(-180deg)
+        -webkit-transform rotate(-180deg)
+        color electricty
+        transform rotate(-180deg)

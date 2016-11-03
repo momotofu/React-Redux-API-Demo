@@ -1,6 +1,19 @@
 import fetch from 'isomorphic-fetch'
 
 /**
+  Accordion
+  */
+
+export const TOGGLE_ACCORDION_ITEM = 'TOGGLE_ACCORDION_ITEM'
+
+export const toggleAccordionItem = (id) => {
+  return {
+    type: TOGGLE_ACCORDION_ITEM,
+    id
+  }
+}
+
+/**
   constanst
   */
 
@@ -22,10 +35,10 @@ function fetchHistory() {
 }
 
 function shouldFetchHistory(state) {
-  const history = state.projectHistory.items
+  const history = state.projectHistory
   if (history.isFetching) {
     return false
-  } else if (noHistory.length === 0) {
+  } else if (!history.lastUpdated) {
     return true
   } else {
     return history.didInvalidate
@@ -59,7 +72,7 @@ function requestHistory() {
 function receiveHistory(json) {
   return {
     type: RECEIVE_HISTORY,
-    history: json,
-    receivedAt: Date.now()
+    historyItems: json,
+    timeStamp: Date.now()
   }
 }

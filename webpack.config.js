@@ -19,7 +19,7 @@ module.exports = {
       {
         test: /\.styl$/,
         include: [
-          path.resolve(__dirname, 'source')
+          path.resolve(__dirname, 'src')
         ],
         loader: 'style-loader!css-loader!stylus-loader'
       }
