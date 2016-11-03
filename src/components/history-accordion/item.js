@@ -9,10 +9,17 @@ const AccordionItem = ({
   open,
   owner,
   percentageComplete,
-  timeStarted
+  timeStarted,
+  metrics,
+  build,
+  unitTest,
+  functionalTest
 }) => (
   <div className='Accordion-item'>
-    <div className='Accordion-item-tab' onClick={onClick}>
+    <div
+      className={`Accordion-item-tab ${itemState === 'pending' ? 'Accordion-item-tab-disabled' : ''}`}
+      onClick={itemState !== 'pending' ? onClick : null}
+      >
       <div className='Accordion-item-tab-label'>
         <div className='Accordion-item-tab-icon-container'>
           {getIcon(itemState)}
@@ -25,33 +32,29 @@ const AccordionItem = ({
         </div>
       </div>
       <div className='Accordion-item-tab-status'>
-        {itemState}
+        {getItemState(itemState)}
       </div>
-      <div className='Accordion-item-tab-metrics'>
-        <div className='Accordion-item-tab-metric'>
-          <div className='Accordion-item-tab-metric-progress-bar'>
-            {getProgressBar(0, 25, percentageComplete)}
+      {itemState !== 'pending' &&
+        <div className='Accordion-item-tab-metrics'>
+          <div className='Accordion-item-tab-metric'>
+            {getProgressBar(0, 25, percentageComplete, metrics.isCompleted)}
+          </div>
+          <div className='Accordion-item-tab-metric'>
+            {getProgressBar(26, 50, percentageComplete, build.isCompleted)}
+          </div>
+          <div className='Accordion-item-tab-metric'>
+            {getProgressBar(51, 75, percentageComplete, unitTest.isCompleted)}
+          </div>
+          <div className='Accordion-item-tab-metric'>
+            {getProgressBar(76, 100, percentageComplete, functionalTest.isCompleted)}
           </div>
         </div>
-        <div className='Accordion-item-tab-metric'>
-          <div className='Accordion-item-tab-metric-progress-bar'>
-            {getProgressBar(26, 50, percentageComplete)}
-          </div>
+      }
+      {itemState !== 'pending' &&
+        <div className='Accordion-item-tab-signifier-container'>
+          <div className={`Accordion-item-tab-signifier entypo-down-open ${open ? 'Accordion-item-tab-signifier-open' : ''}`} />
         </div>
-        <div className='Accordion-item-tab-metric'>
-          <div className='Accordion-item-tab-metric-progress-bar'>
-            {getProgressBar(51, 75, percentageComplete)}
-          </div>
-        </div>
-        <div className='Accordion-item-tab-metric'>
-          <div className='Accordion-item-tab-metric-progress-bar'>
-            {getProgressBar(76, 100, percentageComplete)}
-          </div>
-        </div>
-      </div>
-      <div className='Accordion-item-tab-signifier-container'>
-        <div className={`Accordion-item-tab-signifier entypo-down-open-big ${open ? 'Accordion-item-tab-signifier-open' : ''}`} />
-      </div>
+      }
     </div>
     <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>
       <p className='Accordion-item-paragraph'>
@@ -62,13 +65,13 @@ const AccordionItem = ({
 
 function getIcon(itemState) {
   if (itemState === 'rejected' || itemState === 'running' || itemState === 'accepted')
-    return  <span className="Accordion-item-tab-icon entypo-flow-branch"></span>
+    return  <span className="Accordion-item-tab-icon entypo-flow-parallel"></span>
   else
     return  <span className="Accordion-item-tab-icon entypo-publish"></span>
 }
 
 function getSubLabel(itemState, owner, timeStarted) {
-  if (itemState !== 'pending' && itemState !== 'complete') {
+  if (itemState !== 'pending' && itemState !== 'completed') {
     return(
       <div className='Accordion-item-tab-label-sub'>
         <span className='Accordion-item-tab-label-owner'>{owner}</span>{ ` modified on ${new Date(timeStarted).toLocaleString()}`}
@@ -84,13 +87,43 @@ function getSubLabel(itemState, owner, timeStarted) {
   }
 }
 
-function getProgressBar(min, threshold, percentageComplete) {
-  if (percentageComplete >= threshold)
-    return <span style={{height:`${100}%`}}></span>
-  else if (percentageComplete < min)
-    return <span style={{height:`${0}%`}}></span>
-  else
-    return <span style={{height:`${percentageComplete}%`}}></span>
+function getItemState(itemState) {
+  if (itemState === 'pending') {
+    return <span className='Accordion-item-tab-status-icon-pending entypo-arrows-ccw'></span>
+  } else if (itemState === 'running') {
+    return (
+      <div>
+        <span className='Accordion-item-tab-status-icon-dot-1 entypo-dot'></span>
+        <span className='Accordion-item-tab-status-icon-dot-2 entypo-dot'></span>
+        <span className='Accordion-item-tab-status-icon-dot-3 entypo-dot'></span>
+      </div>
+    )
+  } else {
+    return <span>{itemState}</span>
+  }
+}
+
+function getProgressBar(min, threshold, percentageComplete, failed) {
+  console.log('failed: ', failed)
+  if (percentageComplete >= threshold) {
+    return (
+      <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
+        <span className='Accordion-item-tab-metric-progress-bar-meter' style={{height:`${100}%`}}></span>
+      </div>
+    )
+  } else if (percentageComplete < min) {
+   return (
+      <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
+        <span className='Accordion-item-tab-metric-progress-bar-meter' style={{height:`${0}%`}}></span>
+      </div>
+    )
+  } else {
+    return (
+      <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
+        <span className='Accordion-item-tab-metric-progress-bar-meter' style={{height:`${percentageComplete}%`}}></span>
+      </div>
+    )
+ }
 }
 
 AccordionItem.propTypes = PropTypes.shape({
@@ -105,7 +138,8 @@ AccordionItem.propTypes = PropTypes.shape({
     test: PropTypes.number,
     maintainability: PropTypes.number.isRequired,
     security: PropTypes.number.isRequired,
-    workmanship: PropTypes.number.isRequired
+    workmanship: PropTypes.number.isRequired,
+    isCompleted: PropTypes.bool.isRequired
   }).isRequired,
   build: PropTypes.shape({
     timeStamp: PropTypes.number.isRequired,
@@ -116,14 +150,14 @@ AccordionItem.propTypes = PropTypes.shape({
     failed: PropTypes.number.isRequired,
     coveredPercentage: PropTypes.number.isRequired,
     testsPassed: PropTypes.number.isRequired,
-    isComplete: PropTypes.bool.isRequired
+    isCompleted: PropTypes.bool.isRequired
   }).isRequired,
-  functional_test: PropTypes.shape({
+  functionalTest: PropTypes.shape({
     passed: PropTypes.number.isRequired,
     failed: PropTypes.number.isRequired,
     coveredPercentage: PropTypes.number.isRequired,
     testsPassed: PropTypes.number.isRequired,
-    isComplete: PropTypes.bool.isRequired
+    isCompleted: PropTypes.bool.isRequired
   }).isRequired,
   result: PropTypes.shape({
     status: PropTypes.string.isRequired,

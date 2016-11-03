@@ -5,8 +5,17 @@ require('./index.styl')
 
 const Accordion = ({accordionItems, onItemClick}) => (
   <div className='Accordion-container'>
+    <div className='Accordion-container-labels'>
+      <span>Changelist/build</span>
+      <div className='Accordion-container-labels-metrics'>
+        <span className='Accordion-container-labels-metrics-label'>State</span>
+        <span className='Accordion-container-labels-metrics-label'>Metrics</span>
+        <span className='Accordion-container-labels-metrics-label'>Build</span>
+        <span className='Accordion-container-labels-metrics-label'>Unit Test</span>
+        <span className='Accordion-container-labels-metrics-label'>Func Test</span>
+      </div>
+    </div>
     {accordionItems.map((item, index) => {
-      console.log('accordionItems: ', accordionItems)
       return (
         <AccordionItem
           key={item.itemID}
@@ -31,7 +40,8 @@ Accordion.propTypes = {
       maintainability: PropTypes.number.isRequired,
       security: PropTypes.number.isRequired,
       test: PropTypes.number,
-      workmanship: PropTypes.number.isRequired
+      workmanship: PropTypes.number.isRequired,
+      isCompleted: PropTypes.bool.isRequired
     }).isRequired,
     build: PropTypes.shape({
       isCompleted: PropTypes.bool.isRequired,
@@ -40,14 +50,14 @@ Accordion.propTypes = {
     unitTest: PropTypes.shape({
       coveredPercentage: PropTypes.number.isRequired,
       failed: PropTypes.number.isRequired,
-      isComplete: PropTypes.bool.isRequired,
+      isCompleted: PropTypes.bool.isRequired,
       passed: PropTypes.number.isRequired,
       testsPassed: PropTypes.number.isRequired
     }).isRequired,
     functionalTest: PropTypes.shape({
       coveredPercentage: PropTypes.number.isRequired,
       failed: PropTypes.number.isRequired,
-      isComplete: PropTypes.bool.isRequired,
+      isCompleted: PropTypes.bool.isRequired,
       passed: PropTypes.number.isRequired,
       testsPassed: PropTypes.number.isRequired
     }).isRequired,

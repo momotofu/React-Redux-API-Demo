@@ -1,0 +1,54 @@
+@import '../styles/color.styl'
+
+.App
+  &-container
+    padding-top 6rem
+    max-width 700px
+    width 100%
+    display flex
+    flex-direction column
+    align-items flex-start
+    margin auto
+
+  &-footer
+    margin 10px 62px 0
+    opacity .7
+    font-size 11px
+
+  &-refresh
+    &-signifier
+      margin .5rem 0 3rem
+      padding 0 24px
+      border-radius 100px
+      height 44px
+      -webkit-appearance none
+      -webkit-touch-callout none
+      background-color white
+      border 1px solid steel
+      box-sizing border-box
+      color charcoal
+      font-size 12px
+      text-transform uppercase
+      font-weight bold
+      cursor pointer
+      outline none
+      transition all .2s ease
+      user-select none
+      vertical-align middle
+      z-index 10
+      &:hover
+        background-color mist
+        color white
+        text-decoration none
+        transition none
+      &:active
+        transition none
+        background-color mistActive
+        color white
+        box-shadow none
+      &:hover, &:active
+        opacity .8
+
+    &-container
+      text-align center
+      margin-left 3rem

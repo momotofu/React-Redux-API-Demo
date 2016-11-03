@@ -32,7 +32,8 @@ function projectHistory(state = {
           percentageComplete: item.percentage_complete,
           timeStarted: item.time_started,
           metrics: {
-            ...item.metrics
+            ...item.metrics,
+            isCompleted: item.metrics.is_completed
           },
           build: {
             timeStamp: item.build.time_stamp,

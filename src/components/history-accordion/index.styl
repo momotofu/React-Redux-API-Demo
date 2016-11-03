@@ -14,7 +14,23 @@
     z-index 1
     color charcoal
     margin auto
-
+    &-labels
+      font-size 12px
+      opacity .7
+      margin 10px
+      margin-left 62px
+      display flex
+      justify-content space-between
+      font-weight bold
+      &-metrics
+        margin-right 52px
+        &-label
+          display inline-block
+          min-width 54px
+          margin-left 17px
+          text-align center
+          &:first-child
+            margin-right 43px
   &-item
     position relative
     background white
@@ -46,6 +62,8 @@
     width 100%
     z-index 10
     &-label
+      white-space nowrap
+      overflow hidden
       position relative
       display flex
       width 100%
@@ -60,19 +78,21 @@
         font-size 12px
       &-owner
         font-weight bold
-      &:hover
-        cursor pointer
     &-container
       display flex
       flex-direction column
     &-metrics
       display flex
     &-status
-      text-align left
+      text-align center
       min-width 72px
+      margin-right 36px
+      margin-left 50px
+      opacity .7
     &-metric
       margin-left 18px
       &-progress-bar
+        background-color white
         height 18px
         position relative
         border 1px solid steel
@@ -81,7 +101,8 @@
         width 48px
         display flex
         align-items flex-end
-        span
+        &-meter
+          opacity .7
           display block
           height 100%
           border-radius 2px
@@ -92,6 +113,9 @@
             inset 0 -2px 6px rgba(0,0,0,0.4)
           position relative
           overflow hidden
+        &-failed
+          span
+            background-color electricity
 
     &-signifier
       &-open
@@ -100,9 +124,33 @@
         transform rotate(-180deg)
       &-container
         text-align center
-        padding 1px 21px
+        padding 1px 24px
         cursor default
         font-size 16px
+        &:hover
+          cursor pointer
+
+    &-status-icon
+      &-pending
+        animation spin 1s linear infinite
+        display block
+        padding 0 1px 1px 1px
+        width 16px
+        height 16px
+        text-align center
+        margin-left 1px
+      &-dot-1, &-dot-2, &-dot-3, &-pending
+        font-size 16px
+      &-dot-1, &-dot-2, &-dot-3
+        padding-right 1px
+      &-dot-1
+        animation dot .8s linear infinite
+      &-dot-2
+        animation dot .8s linear infinite
+        animation-delay .3s
+      &-dot-3
+        animation dot .8s linear infinite
+        animation-delay .6s
 
     &-icon
       margin-right 2px
@@ -118,7 +166,24 @@
         align-items center
     &:hover
       cursor pointer
-      background-color #f7fbfc
+      background-color glass
     &:active
       transition none
-      background-color #F1F8F9
+      background-color glassActive
+    &-disabled
+      justify-content flex-start
+      opacity .7
+      .Accordion-item-tab-status
+        margin-right 360px
+      &:hover, &:active
+        background white
+        cursor not-allowed
+
+// animations
+@keyframes spin
+  100%
+    transform rotate(360deg)
+
+@keyframes dot
+  100%
+    opacity 0

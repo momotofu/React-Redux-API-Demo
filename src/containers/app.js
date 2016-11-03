@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { fetchHistoryIfNeeded, invalidateRequest, toggleAccordionItem } from '../actions'
 import HistoryAccordion from '../components/history-accordion'
 
+require('./index.styl')
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -36,21 +38,15 @@ class App extends Component {
   render() {
     const { items, isFetching, lastUpdated } = this.props
     return (
-      <div>
-          <p>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>
-          }
-          {!isFetching &&
-            <a href='#'
-               onClick={this.handleRefreshClick}>
-              Refresh
-            </a>
-          }
-        </p>
+      <div className="App-container">
+        <div className="App-refresh-container">
+          <button
+            onClick={this.handleRefreshClick}
+            className='App-refresh-signifier'
+          >
+            Update changelist
+          </button>
+        </div>
         {isFetching && items.length === 0 &&
           <h2>Loading...</h2>
         }
@@ -58,8 +54,15 @@ class App extends Component {
           <h2>Empty.</h2>
         }
         {items.length > 0 &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <div style={{ opacity: isFetching ? 0.5 : 1 , width: '100%'}}>
             <HistoryAccordion accordionItems={items} onItemClick={this.handleItemClick} />
+          </div>
+        }
+        {lastUpdated &&
+          <div className='App-footer'>
+            <span>
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}
+            </span>
           </div>
         }
       </div>
