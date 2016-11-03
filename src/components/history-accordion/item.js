@@ -18,17 +18,12 @@ const AccordionItem = ({
           {getIcon(itemState)}
         </span>
       </div>
-      <div className='Accordion-item-tab-label'>
-        <a
-          className='Accordion-item-tab-title'
-          onClick={onClick}>
+      <div className='Accordion-item-tab-label' onClick={onClick}>
+        <div className='Accordion-item-tab-label-title'>
           {buildID}
-        </a>
-        {itemState !== 'pending' || itemState !== 'complete' &&
-          <span className='Accordion-item-tab-sub-label'>
-            {`${owner} change ${new Date(timeStarted).toLocaleString()}`}
-          </span>
-        }
+          <div className={`Accordion-item-tab-signifier ${open ? 'Accordion-item-tab-signifier-open' : ''}`} />
+        </div>
+        {getSubLabel(itemState, owner, timeStarted)}
       </div>
       <div className='Accordion-item-tab-metric'>
           {itemState}
@@ -63,11 +58,27 @@ const AccordionItem = ({
   </div>
 )
 
-function getIcon(props) {
-  if (props === 'rejected' || props === 'running' || props === 'accepted')
+function getIcon(itemState) {
+  if (itemState === 'rejected' && itemState === 'running' && itemState === 'accepted')
     return <img src="build" />
   else
     return <img src="firewall" />
+}
+
+function getSubLabel(itemState, owner, timeStarted) {
+  if (itemState !== 'pending' && itemState !== 'complete') {
+    return(
+      <div className='Accordion-item-tab-label-sub'>
+        <span className='Accordion-item-tab-label-owner'>{owner}</span>{ ` started on ${new Date(timeStarted).toLocaleString()}`}
+      </div>
+    )
+  } else {
+    return (
+      <div className='Accordion-item-tab-label-sub'>
+      {`started on ${new Date(timeStarted).toLocaleString()}`}
+      </div>
+    )
+  }
 }
 
 AccordionItem.propTypes = PropTypes.shape({

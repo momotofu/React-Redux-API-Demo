@@ -5,15 +5,16 @@
     max-width 497px
     width 100%
     z-index 1
-    outline 1px solid steel
     color charcoal
 
   &-item
     position relative
     background white
+    margin -1px
     &-description
+      border 1px solid steel
       min-height 4rem
-      padding 1rem
+      padding 8px
       box-sizing border-box
       overflow hidden
       line-height 1.2
@@ -21,21 +22,11 @@
       &-open
         padding-top 5rem
         max-height 100%
-    &-paragraph
-      color bubbleBath
-      opacity .5
-      font-size 12px
-      margin-top .5rem
-      line-height 1.4
-      display block
 
   &-item-tab
-    -webkit-box-shadow 0px 4px 9px 0 rgba(12, 3, 24, .2)
-    -moz-box-shadow 0px 4px 9px 0 rgba(12, 3, 24, .2)
-    box-shadow 0px 4px 9px 0 rgba(12, 3, 24, .2)
     align-items center
     background white
-    outline 1px solid rust
+    border 1px solid steel
     box-sizing border-box
     display flex
     min-height 4rem
@@ -45,44 +36,51 @@
     width 100%
     z-index 10
     &-label
+      position relative
       display flex
       flex-direction column
       margin-left 1rem
+      padding 8px 0
       &-title
-        color tangerine
+        color charcoal
         font-weight bold
-        font-size 13px
+        font-size 15px
         margin-bottom .25rem
+        display flex
       &-sub
-        color rust
+        opacity .7
         font-size 12px
+      &-owner
+        font-weight bold
+      &:hover
+        cursor pointer
     &-signifier
       background none
+      position relative
       border none
-      height 32px
-      margin-right 0
-      top 7px
       outline none
-      padding 10px
-      position absolute
-      right 8px
-      width 32px
-      &:after
-        -ms-transform rotate(45deg)
-        -webkit-transform rotate(45deg)
+      height 8px
+      width 11px
+      &:after, &:before
+        position absolute
         animation-duration 2.5s
-        border 2px solid
-        border-left 2px solid transparent
-        border-radius 2px
-        border-top 2px solid transparent
         content ''
         display block
-        height 8px
-        margin-top -5px
+        height 2px
+        width 6px
+        background charcoal
+        border-radius 2px
+      &:after
         transform rotate(45deg)
-        width 8px
+        -ms-transform rotate(45deg)
+        -webkit-transform rotate(45deg)
+      &:before
+        right 1px
+        transform rotate(135deg)
+        -ms-transform rotate(135deg)
+        -webkit-transform rotate(135deg)
+
       &-open
         -ms-transform rotate(-180deg)
         -webkit-transform rotate(-180deg)
-        color electricty
         transform rotate(-180deg)
