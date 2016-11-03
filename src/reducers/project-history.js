@@ -21,16 +21,19 @@ function projectHistory(state = {
     case ACTIONS.RECEIVE_HISTORY:
       // changing server semantics to client semantics for clarity
       return {
-        ...state,
         isFetching: false,
         didInvalidate: false,
         items: action.historyItems.map(item => ({
-          ...item,
-          itemState: item.state,
-          itemID: createUUID(),
           buildID: item.build_id,
-          timeStarted: item.time_started,
+          itemID: createUUID(),
+          itemState: item.state,
+          owner: item.owner,
+          open: false,
           percentageComplete: item.percentage_complete,
+          timeStarted: item.time_started,
+          metrics: {
+            ...item.metrics
+          },
           build: {
             timeStamp: item.build.time_stamp,
             isCompleted: item.build.is_completed
@@ -47,7 +50,9 @@ function projectHistory(state = {
             testsPassed: item.unit_test.tests_passed,
             isComplete: item.unit_test.is_complete,
           },
-          open: false
+          result: {
+            ...item.result
+          }
         })),
         lastUpdated: action.timeStamp
       }

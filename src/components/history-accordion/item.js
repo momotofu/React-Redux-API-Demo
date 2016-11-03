@@ -3,64 +3,55 @@ import React, { PropTypes } from 'react'
 require('./index.styl')
 
 const AccordionItem = ({
-  state,
+  buildID,
+  itemState,
+  onClick,
   open,
   owner,
-  onClick,
-  timeStarted,
-  percentageComplete
+  percentageComplete,
+  timeStarted
 }) => (
   <div className='Accordion-item'>
     <div className='Accordion-item-tab'>
       <div className='Accordion-item-tab-label'>
         <h4 className='Accordion-item-tab-label-title'>
-          {state === 'rejected' || state === 'running' || state === 'accepted' &&
-            <h1>firewall</h1>
-          }
-          {state === 'completed' || state === 'pending' &&
-            <h1>build</h1>
-          }
+          {getIcon(itemState)}
         </h4>
       </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
+      <a
+        className={`Accordion-item-tab-signifier Accordion-signifier${ open ? '-open' : ''}`}
+        onClick={onClick}>
+        {buildID}
+      </a>
+      <h4 className='Accordion-item-tab-label-title'>
           {owner}
-        </h4>
-      </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
-          {timeStarted}
-        </h4>
-      </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
-          {state}
-        </h4>
-      </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
-          {percentageComplete}
-        </h4>
-      </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
-          {percentageComplete}
-        </h4>
-      </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
-          {percentageComplete}
-        </h4>
-      </div>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
-          {percentageComplete}
-        </h4>
-      </div>
-      <button
-        className={'Accordion-item-tab-signifier Accordion-signifier' + (open ? ' Accordion-item-tab-signifier-open' : '')}
-        onClick={onClick}
-      />
+      </h4>
+      <h4 className='Accordion-item-tab-label-title'>
+          {new Date(timeStarted).toLocaleString() }
+      </h4>
+      <h4 className='Accordion-item-tab-label-title'>
+          {itemState}
+      </h4>
+      <h4 className='Accordion-item-tab-label-title'>
+          {percentageComplete >= 25 &&
+            <span>check</span>
+          }
+      </h4>
+      <h4 className='Accordion-item-tab-label-title'>
+          {percentageComplete >= 50 &&
+            <span>check</span>
+          }
+      </h4>
+      <h4 className='Accordion-item-tab-label-title'>
+        {percentageComplete >= 75 &&
+          <span>check</span>
+        }
+      </h4>
+      <h4 className='Accordion-item-tab-label-title'>
+        {percentageComplete === 100 &&
+          <span>check</span>
+        }
+      </h4>
     </div>
     <div
       className={'Accordion-item-description' + (open ? ' Accordion-item-description-open' : '')}
@@ -74,6 +65,13 @@ const AccordionItem = ({
     </div>
   </div>
 )
+
+function getIcon(props) {
+  if (props === 'rejected' || props === 'running' || props === 'accepted')
+    return <img src="build" />
+  else
+    return <img src="firewall" />
+}
 
 AccordionItem.propTypes = PropTypes.shape({
   onClick: PropTypes.func.isRequired,
