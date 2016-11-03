@@ -3,23 +3,33 @@ import React, { PropTypes } from 'react'
 require('./index.styl')
 
 const AccordionItem = ({
-  tabLabel,
-  tabSubLabel,
-  onClick,
+  state,
   open,
-  demoURL,
-  githubURL,
-  description
+  owner,
+  onClick,
+  timeStarted: time_started
 }) => (
   <div className='Accordion-item'>
     <div className='Accordion-item-tab'>
       <div className='Accordion-item-tab-label'>
         <h4 className='Accordion-item-tab-label-title'>
-          {tabLabel}
+          {state === 'rejected' || state === 'running' || state === 'accepted' &&
+            <h1>firewall</h1>
+          }
+          {state === 'completed' || state === 'pending' &&
+            <h1>build</h1>
+          }
         </h4>
-        <h6 className='Accordion-item-tab-label-sub'>
-          {tabSubLabel}
-        </h6>
+      </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {owner}
+        </h4>
+      </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {timeStarted}
+        </h4>
       </div>
       <button
         className={'Accordion-item-tab-signifier Accordion-signifier' + (open ? ' Accordion-item-tab-signifier-open' : '')}
@@ -29,16 +39,18 @@ const AccordionItem = ({
     <div
       className={'Accordion-item-description' + (open ? ' Accordion-item-description-open' : '')}
     >
+    {/*
       <a className={'Accordion-signifier Accordion-item-signifier' + (!demoURL ? ' Accordion-item-signifier-disabled' : '')} href={demoURL ? demoURL : '#'} target='_blank'>{demoURL ? 'Demo' : 'Demo (pending)'}</a>
       <a className={'Accordion-signifier Accordion-item-signifier' + (!githubURL ? ' Accordion-item-signifier-disabled' : '')} href={githubURL ? githubURL : '#'} target='_blank'>{githubURL ? 'GitHub' : 'GitHub (private)'}</a>
+    */}
       <p className='Accordion-item-paragraph'>
-      {description}
       </p>
     </div>
   </div>
 )
 
 AccordionItem.propTypes = PropTypes.shape({
+  onClick: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   build_id: PropTypes.string.isRequired,
   state: PropTypes.string.isRequired,

@@ -9,9 +9,9 @@ const Accordion = ({accordionItems, onItemClick}) => (
       console.log('accordionItems: ', accordionItems)
       return (
         <AccordionItem
-          key={item.item_id}
+          key={item.itemID}
           {...item}
-          onClick={() => onItemClick(item.item_id)}
+          onClick={() => onItemClick(item.itemID)}
         />
       )
     })}
@@ -20,40 +20,40 @@ const Accordion = ({accordionItems, onItemClick}) => (
 
 Accordion.propTypes = {
   accordionItems: PropTypes.arrayOf(PropTypes.shape({
-    item_id: PropTypes.string.isRequired,
+    buildID: PropTypes.string.isRequired,
+    itemID: PropTypes.string.isRequired,
     open: PropTypes.bool.isRequired,
-    build_id: PropTypes.string.isRequired,
-    state: PropTypes.string.isRequired,
     owner: PropTypes.string.isRequired,
-    time_started: PropTypes.number.isRequired,
-    percentage_complete: PropTypes.number.isRequired,
+    state: PropTypes.string.isRequired,
+    timeStarted: PropTypes.number.isRequired,
+    percentageComplete: PropTypes.number.isRequired,
     metrics: PropTypes.shape({
-      test: PropTypes.number,
       maintainability: PropTypes.number.isRequired,
       security: PropTypes.number.isRequired,
+      test: PropTypes.number,
       workmanship: PropTypes.number.isRequired
     }).isRequired,
     build: PropTypes.shape({
-      time_stamp: PropTypes.number.isRequired,
-      is_completed: PropTypes.bool.isRequired,
+      isCompleted: PropTypes.bool.isRequired,
+      timeStamp: PropTypes.number.isRequired,
     }).isRequired,
-    unit_test: PropTypes.shape({
-      passed: PropTypes.number.isRequired,
+    unitTest: PropTypes.shape({
+      coveredPercentage: PropTypes.number.isRequired,
       failed: PropTypes.number.isRequired,
-      covered_percentage: PropTypes.number.isRequired,
-      tests_passed: PropTypes.number.isRequired,
-      is_complete: PropTypes.bool.isRequired
+      isComplete: PropTypes.bool.isRequired,
+      passed: PropTypes.number.isRequired,
+      testsPassed: PropTypes.number.isRequired
     }).isRequired,
-    functional_test: PropTypes.shape({
-      passed: PropTypes.number.isRequired,
+    functionalTest: PropTypes.shape({
+      coveredPercentage: PropTypes.number.isRequired,
       failed: PropTypes.number.isRequired,
-      covered_percentage: PropTypes.number.isRequired,
-      tests_passed: PropTypes.number.isRequired,
-      is_complete: PropTypes.bool.isRequired
+      isComplete: PropTypes.bool.isRequired,
+      passed: PropTypes.number.isRequired,
+      testsPassed: PropTypes.number.isRequired
     }).isRequired,
     result: PropTypes.shape({
-      status: PropTypes.string.isRequired,
-      error: PropTypes.string
+      error: PropTypes.string,
+      status: PropTypes.string.isRequired
     }).isRequired,
   }).isRequired).isRequired,
   onItemClick: PropTypes.func.isRequired
