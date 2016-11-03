@@ -1,8 +1,15 @@
+@import url('http://weloveiconfonts.com/api/?family=entypo')
 @import '../../styles/color'
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
 
 .Accordion
   &-container
-    max-width 497px
+    max-width 800px
     width 100%
     z-index 1
     color charcoal
@@ -13,23 +20,25 @@
     margin -1px
     &-description
       border 1px solid steel
-      min-height 4rem
+      min-height 5rem
       padding 8px
       box-sizing border-box
       overflow hidden
       line-height 1.2
       transition padding .3s ease
       &-open
-        padding-top 5rem
+        padding-top 16rem
         max-height 100%
 
   &-item-tab
+    transition background-color .3s ease
     align-items center
     background white
     border 1px solid steel
     box-sizing border-box
     display flex
-    min-height 4rem
+    justify-content space-between
+    min-height 5rem
     position absolute
     left 0
     top 0
@@ -39,8 +48,8 @@
       position relative
       display flex
       flex-direction column
-      margin-left 1rem
-      padding 8px 0
+      padding 8px 18px
+      width 100%
       &-title
         color charcoal
         font-weight bold
@@ -50,37 +59,56 @@
       &-sub
         opacity .7
         font-size 12px
+        margin-left 20px
       &-owner
         font-weight bold
       &:hover
         cursor pointer
-    &-signifier
-      background none
-      position relative
-      border none
-      outline none
-      height 8px
-      width 11px
-      &:after, &:before
-        position absolute
-        animation-duration 2.5s
-        content ''
-        display block
-        height 2px
-        width 6px
-        background charcoal
+    &-metrics
+      display flex
+      margin-right 18px
+    &-metric
+      margin-left 18px
+      &-progress-bar
+        height 18px
+        position relative
+        border 1px solid steel
         border-radius 2px
-      &:after
-        transform rotate(45deg)
-        -ms-transform rotate(45deg)
-        -webkit-transform rotate(45deg)
-      &:before
-        right 1px
-        transform rotate(135deg)
-        -ms-transform rotate(135deg)
-        -webkit-transform rotate(135deg)
+        padding 2px
+        width 48px
+        display flex
+        align-items flex-end
+        span
+          display block
+          height 100%
+          border-radius 2px
+          background-color lettuce
+          width 100%
+          box-shadow
+            inset 0 2px 9px  rgba(255,255,255,0.3),
+            inset 0 -2px 6px rgba(0,0,0,0.4)
+          position relative
+          overflow hidden
 
+    &-signifier
       &-open
         -ms-transform rotate(-180deg)
         -webkit-transform rotate(-180deg)
         transform rotate(-180deg)
+      &-container
+        text-align center
+        padding 1px 21px
+        border-right 1px solid steel
+        cursor default
+        font-size 16px
+
+    &-icon
+      margin-right 2px
+      text-align center
+      width 18px
+      display block
+    &:hover
+      cursor pointer
+      background-color #f7fbfc
+    &:active
+      background-color #E5EDF0
