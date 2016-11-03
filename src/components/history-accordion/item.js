@@ -13,18 +13,19 @@ const AccordionItem = ({
 }) => (
   <div className='Accordion-item'>
     <div className='Accordion-item-tab' onClick={onClick}>
-      <div className='Accordion-item-tab-signifier-container'>
-        <div className={`Accordion-item-tab-signifier entypo-down-open-big ${open ? 'Accordion-item-tab-signifier-open' : ''}`} />
-      </div>
       <div className='Accordion-item-tab-label'>
-        <div className='Accordion-item-tab-label-title'>
+        <div className='Accordion-item-tab-icon-container'>
           {getIcon(itemState)}
-          {buildID}
         </div>
-        {getSubLabel(itemState, owner, timeStarted)}
+        <div className='Accordion-item-tab-label-container'>
+          <div className='Accordion-item-tab-label-title'>
+            {buildID}
+          </div>
+          {getSubLabel(itemState, owner, timeStarted)}
+        </div>
       </div>
-      <div className='Accordion-item-tab-metric'>
-          {itemState}
+      <div className='Accordion-item-tab-status'>
+        {itemState}
       </div>
       <div className='Accordion-item-tab-metrics'>
         <div className='Accordion-item-tab-metric'>
@@ -47,6 +48,9 @@ const AccordionItem = ({
             {getProgressBar(76, 100, percentageComplete)}
           </div>
         </div>
+      </div>
+      <div className='Accordion-item-tab-signifier-container'>
+        <div className={`Accordion-item-tab-signifier entypo-down-open-big ${open ? 'Accordion-item-tab-signifier-open' : ''}`} />
       </div>
     </div>
     <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>

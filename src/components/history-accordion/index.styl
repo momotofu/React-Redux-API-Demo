@@ -13,6 +13,7 @@
     width 100%
     z-index 1
     color charcoal
+    margin auto
 
   &-item
     position relative
@@ -47,26 +48,28 @@
     &-label
       position relative
       display flex
-      flex-direction column
-      padding 8px 18px
       width 100%
       &-title
         color charcoal
         font-weight bold
         font-size 15px
-        margin-bottom .25rem
+        margin 2px 0  7px
         display flex
       &-sub
         opacity .7
         font-size 12px
-        margin-left 20px
       &-owner
         font-weight bold
       &:hover
         cursor pointer
+    &-container
+      display flex
+      flex-direction column
     &-metrics
       display flex
-      margin-right 18px
+    &-status
+      text-align left
+      min-width 72px
     &-metric
       margin-left 18px
       &-progress-bar
@@ -98,7 +101,6 @@
       &-container
         text-align center
         padding 1px 21px
-        border-right 1px solid steel
         cursor default
         font-size 16px
 
@@ -107,8 +109,16 @@
       text-align center
       width 18px
       display block
+      &-container
+        text-align center
+        padding 1px 21px
+        cursor default
+        font-size 16px
+        display flex
+        align-items center
     &:hover
       cursor pointer
       background-color #f7fbfc
     &:active
-      background-color #E5EDF0
+      transition none
+      background-color #F1F8F9
