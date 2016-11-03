@@ -24,7 +24,7 @@ Accordion.propTypes = {
     itemID: PropTypes.string.isRequired,
     open: PropTypes.bool.isRequired,
     owner: PropTypes.string.isRequired,
-    state: PropTypes.string.isRequired,
+    itemState: PropTypes.string.isRequired,
     timeStarted: PropTypes.number.isRequired,
     percentageComplete: PropTypes.number.isRequired,
     metrics: PropTypes.shape({

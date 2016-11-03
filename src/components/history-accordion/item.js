@@ -7,7 +7,8 @@ const AccordionItem = ({
   open,
   owner,
   onClick,
-  timeStarted: time_started
+  timeStarted,
+  percentageComplete
 }) => (
   <div className='Accordion-item'>
     <div className='Accordion-item-tab'>
@@ -31,6 +32,31 @@ const AccordionItem = ({
           {timeStarted}
         </h4>
       </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {state}
+        </h4>
+      </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {percentageComplete}
+        </h4>
+      </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {percentageComplete}
+        </h4>
+      </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {percentageComplete}
+        </h4>
+      </div>
+      <div className='Accordion-item-tab-label'>
+        <h4 className='Accordion-item-tab-label-title'>
+          {percentageComplete}
+        </h4>
+      </div>
       <button
         className={'Accordion-item-tab-signifier Accordion-signifier' + (open ? ' Accordion-item-tab-signifier-open' : '')}
         onClick={onClick}
@@ -52,11 +78,11 @@ const AccordionItem = ({
 AccordionItem.propTypes = PropTypes.shape({
   onClick: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  build_id: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
+  buildID: PropTypes.string.isRequired,
+  itemState: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
-  time_started: PropTypes.number.isRequired,
-  percentage_complete: PropTypes.number.isRequired,
+  timeStarted: PropTypes.number.isRequired,
+  percentageComplete: PropTypes.number.isRequired,
   metrics: PropTypes.shape({
     test: PropTypes.number,
     maintainability: PropTypes.number.isRequired,
@@ -64,22 +90,22 @@ AccordionItem.propTypes = PropTypes.shape({
     workmanship: PropTypes.number.isRequired
   }).isRequired,
   build: PropTypes.shape({
-    time_stamp: PropTypes.number.isRequired,
-    is_completed: PropTypes.bool.isRequired,
+    timeStamp: PropTypes.number.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
   }).isRequired,
-  unit_test: PropTypes.shape({
+  unitTest: PropTypes.shape({
     passed: PropTypes.number.isRequired,
     failed: PropTypes.number.isRequired,
-    covered_percentage: PropTypes.number.isRequired,
-    tests_passed: PropTypes.number.isRequired,
-    is_complete: PropTypes.bool.isRequired
+    coveredPercentage: PropTypes.number.isRequired,
+    testsPassed: PropTypes.number.isRequired,
+    isComplete: PropTypes.bool.isRequired
   }).isRequired,
   functional_test: PropTypes.shape({
     passed: PropTypes.number.isRequired,
     failed: PropTypes.number.isRequired,
-    covered_percentage: PropTypes.number.isRequired,
-    tests_passed: PropTypes.number.isRequired,
-    is_complete: PropTypes.bool.isRequired
+    coveredPercentage: PropTypes.number.isRequired,
+    testsPassed: PropTypes.number.isRequired,
+    isComplete: PropTypes.bool.isRequired
   }).isRequired,
   result: PropTypes.shape({
     status: PropTypes.string.isRequired,

@@ -8,21 +8,25 @@ function projectHistory(state = {
 }, action) {
   switch (action.type) {
     case ACTIONS.INVALIDATE_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         didInvalidate: true
-      })
+      }
     case ACTIONS.REQUEST_HISTORY:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         didInvalidate: false
-      })
+      }
     case ACTIONS.RECEIVE_HISTORY:
       // changing server semantics to client semantics for clarity
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         didInvalidate: false,
         items: action.historyItems.map(item => ({
           ...item,
+          itemState: item.state,
           itemID: createUUID(),
           buildID: item.build_id,
           timeStarted: item.time_started,
@@ -46,9 +50,10 @@ function projectHistory(state = {
           open: false
         })),
         lastUpdated: action.timeStamp
-      })
+      }
     case ACTIONS.TOGGLE_ACCORDION_ITEM:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         items: state.items.map((item) => {
           if (item.id !== action.id)
             return {
@@ -60,7 +65,7 @@ function projectHistory(state = {
             open: !item.open
           }
         })
-      })
+      }
     default:
       return state
   }
