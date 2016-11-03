@@ -69,13 +69,14 @@ function getSubLabel(itemState, owner, timeStarted) {
   if (itemState !== 'pending' && itemState !== 'complete') {
     return(
       <div className='Accordion-item-tab-label-sub'>
-        <span className='Accordion-item-tab-label-owner'>{owner}</span>{ ` started on ${new Date(timeStarted).toLocaleString()}`}
+        <span className='Accordion-item-tab-label-owner'>{owner}</span>{ ` modified on ${new Date(timeStarted).toLocaleString()}`}
       </div>
     )
+  } else if (itemState === 'pending') {
   } else {
     return (
       <div className='Accordion-item-tab-label-sub'>
-      {`started on ${new Date(timeStarted).toLocaleString()}`}
+      {`build started on ${new Date(timeStarted).toLocaleString()}`}
       </div>
     )
   }
