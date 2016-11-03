@@ -13,53 +13,50 @@ const AccordionItem = ({
 }) => (
   <div className='Accordion-item'>
     <div className='Accordion-item-tab'>
-      <div className='Accordion-item-tab-label'>
-        <h4 className='Accordion-item-tab-label-title'>
+      <div className='Accordion-item-tab-icon'>
+        <span className='Accordion-item-tab-label'>
           {getIcon(itemState)}
-        </h4>
+        </span>
       </div>
-      <a
-        className={`Accordion-item-tab-signifier Accordion-signifier${ open ? '-open' : ''}`}
-        onClick={onClick}>
-        {buildID}
-      </a>
-      <h4 className='Accordion-item-tab-label-title'>
-          {owner}
-      </h4>
-      <h4 className='Accordion-item-tab-label-title'>
-          {new Date(timeStarted).toLocaleString() }
-      </h4>
-      <h4 className='Accordion-item-tab-label-title'>
+      <div className='Accordion-item-tab-label'>
+        <a
+          className='Accordion-item-tab-title'
+          onClick={onClick}>
+          {buildID}
+        </a>
+        {itemState !== 'pending' || itemState !== 'complete' &&
+          <span className='Accordion-item-tab-sub-label'>
+            {`${owner} change ${new Date(timeStarted).toLocaleString()}`}
+          </span>
+        }
+      </div>
+      <div className='Accordion-item-tab-metric'>
           {itemState}
-      </h4>
-      <h4 className='Accordion-item-tab-label-title'>
+      </div>
+      <div className='Accordion-item-tab-metric'>
           {percentageComplete >= 25 &&
             <span>check</span>
           }
-      </h4>
-      <h4 className='Accordion-item-tab-label-title'>
+      </div>
+      <div className='Accordion-item-tab-metric'>
           {percentageComplete >= 50 &&
             <span>check</span>
           }
-      </h4>
-      <h4 className='Accordion-item-tab-label-title'>
+      </div>
+      <div className='Accordion-item-tab-metric'>
         {percentageComplete >= 75 &&
           <span>check</span>
         }
-      </h4>
-      <h4 className='Accordion-item-tab-label-title'>
+      </div>
+      <div className='Accordion-item-tab-metric'>
         {percentageComplete === 100 &&
           <span>check</span>
         }
-      </h4>
+      </div>
     </div>
     <div
-      className={'Accordion-item-description' + (open ? ' Accordion-item-description-open' : '')}
+      className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}
     >
-    {/*
-      <a className={'Accordion-signifier Accordion-item-signifier' + (!demoURL ? ' Accordion-item-signifier-disabled' : '')} href={demoURL ? demoURL : '#'} target='_blank'>{demoURL ? 'Demo' : 'Demo (pending)'}</a>
-      <a className={'Accordion-signifier Accordion-item-signifier' + (!githubURL ? ' Accordion-item-signifier-disabled' : '')} href={githubURL ? githubURL : '#'} target='_blank'>{githubURL ? 'GitHub' : 'GitHub (private)'}</a>
-    */}
       <p className='Accordion-item-paragraph'>
       </p>
     </div>

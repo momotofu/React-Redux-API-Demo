@@ -60,7 +60,7 @@ function projectHistory(state = {
       return {
         ...state,
         items: state.items.map((item) => {
-          if (item.id !== action.id)
+          if (item.itemID !== action.id)
             return {
               ...item,
               open: false
