@@ -32,7 +32,10 @@ function projectHistory(state = {
           percentageComplete: item.percentage_complete,
           timeStarted: item.time_started,
           metrics: {
-            ...item.metrics,
+            test: item.metrics.test,
+            maintainability: item.metrics.maintainability,
+            security: item.metrics.security,
+            workmanship: item.metrics.workmanship,
             isCompleted: item.metrics.is_completed
           },
           build: {
@@ -40,16 +43,18 @@ function projectHistory(state = {
             isCompleted: item.build.is_completed
           },
           unitTest: {
-            ...item.unit_test,
+            passed: item.unit_test.passed,
+            failed: item.unit_test.failed,
             coveredPercentage: item.unit_test.covered_percentage,
             testsPassed: item.unit_test.tests_passed,
-            isComplete: item.unit_test.is_complete,
+            isComplete: item.unit_test.is_complete
           },
           functionalTest: {
-            ...item.unit_test,
-            coveredPercentage: item.unit_test.covered_percentage,
-            testsPassed: item.unit_test.tests_passed,
-            isComplete: item.unit_test.is_complete,
+            passed: item.functional_test.passed,
+            failed: item.functional_test.failed,
+            coveredPercentage: item.functional_test.covered_percentage,
+            testsPassed: item.functional_test.tests_passed,
+            isComplete: item.functional_test.is_complete
           },
           result: {
             ...item.result

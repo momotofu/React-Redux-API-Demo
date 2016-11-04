@@ -103,7 +103,7 @@
               inset 0 2px 9px  rgba(255,255,255,0.3),
               inset 0 -2px 6px rgba(0,0,0,0.4)
             position relative
-            overflow hidden
+            white-space nowrap
           &-failed
             span
               background-color ketchup
@@ -180,6 +180,7 @@
       transition all .05s linear
       opacity 0
       max-height 60px
+      display flex
       &-open
         opacity 1
         background-color glass
@@ -187,6 +188,7 @@
         padding-top 67px
         max-height 100%
       &-card
+        width 100%
         display block
         position relative
         background #fff
@@ -195,6 +197,14 @@
         padding 1.5rem
         border 1px solid steel
         transition all .2s ease
+        margin-right 8px
+        &-header
+          padding-bottom 1rem
+          font-size 15px
+        &-footer
+          font-size 11px
+          opacity .5
+          padding-top 1rem
         &-metric
           &-row
             display flex
@@ -215,8 +225,7 @@
                 content attr(data-label)
                 position absolute
                 z-index 1
-                font-weight bold
-                letter-spacing .4px
+                letter-spacing .3px
                 font-size 11px
                 left 5px
                 bottom 3px
@@ -234,18 +243,6 @@
                 background-color electricity
                 &:before
                   color darkElectricity
-        &-header,
-        &-subheader
-          padding-bottom 1rem
-          font-size 15px
-        &-body
-          padding 0
-          font-size 12px
-        &-subfooter,
-        &-footer
-          font-size 11px
-          opacity .5
-          padding-top 1rem
         &:hover
           box-shadow -1px 0 1px 0 rgba(0,0,0,0.02) , 1px 0 1px 0 rgba(0,0,0,0.02) , 0 1px 1px 0 rgba(0,0,0,0.04)
           -webkit-transform translate3d(0,-2px,0)
@@ -255,6 +252,12 @@
           transition none
           box-shadow none
           transform none
+        &:last-child
+          margin-right 0
+
+.Icon
+  &-bug
+    background url('../../assets/images/bug.svg')
 
 // animations
 @keyframes spin

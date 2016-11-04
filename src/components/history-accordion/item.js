@@ -59,15 +59,35 @@ const AccordionItem = ({
       <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
-            {getCardProgressBar(metrics.test, 'green', 'entypo-thermometer', 'test')}
-            {getCardProgressBar(metrics.maintainability, 'green', 'entypo-tools', 'maintainability')}
-            {getCardProgressBar(metrics.security, 'red', 'entypo-lock', 'security')}
-            {getCardProgressBar(metrics.workmanship, 'yellow', 'entypo-brush', 'workmanship')}
+            {getCardProgressBar(metrics.test, null, 'entypo-thermometer', 'test')}
+            {getCardProgressBar(metrics.maintainability, null, 'entypo-tools', 'maintainability')}
+            {getCardProgressBar(metrics.security, null, 'entypo-lock', 'security')}
+            {getCardProgressBar(metrics.workmanship, null, 'entypo-brush', 'workmanship')}
+          </div>
+        }
+        {itemState !== 'pending' &&
+          <div className='Accordion-item-description-card'>
+            <div className='Accordion-item-description-card-button Icon-bug'>
+            </div>
+          </div>
+        }
+        {itemState !== 'pending' &&
+          <div className='Accordion-item-description-card'>
+            {getCardProgressBar(unitTest.coveredPercentage, null, 'entypo-network', 'code covered')}
+          </div>
+        }
+        {itemState !== 'pending' &&
+          <div className='Accordion-item-description-card'>
+            {getCardProgressBar(functionalTest.coveredPercentage, null, 'entypo-network', 'code covered')}
           </div>
         }
       </div>
   </div>
 )
+
+function log(prop) {
+  console.log(prop)
+}
 
 function getIcon(itemState) {
   if (itemState === 'rejected' || itemState === 'running' || itemState === 'accepted')
@@ -110,14 +130,24 @@ function getItemState(itemState) {
 }
 
 function getCardProgressBar(percentageComplete, color, icon, label) {
+    function getColor() {
+      if (color != null)
+        return color
+      else if (percentageComplete >= 60)
+        return 'green'
+      else if (percentageComplete >= 40)
+        return 'yellow'
+      else
+        return 'red'
+    }
     if (icon) {
       return (
         <div className='Accordion-item-description-card-metric-row'>
           <span className={`Accordion-item-description-card-metric-progress-bar-icon ${icon}`} />
           <div className='Accordion-item-description-card-metric-progress-bar'>
             <span
-              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${color}`}
-              style={{width:`${80}%`}}
+              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${getColor()}`}
+              style={{width:`${percentageComplete}%`}}
               data-label={label}
               />
           </div>
@@ -128,8 +158,8 @@ function getCardProgressBar(percentageComplete, color, icon, label) {
         <div className='Accordion-item-description-card-metric-row'>
           <div className='Accordion-item-description-card-metric-progress-bar'>
             <span
-              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${color}`}
-              style={{width:`${80}%`}}
+              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${getColor()}`}
+              style={{width:`${percentageComplete}%`}}
               data-label={label}
               />
           </div>

@@ -22,7 +22,8 @@ module.exports = {
           path.resolve(__dirname, 'src')
         ],
         loader: 'style-loader!css-loader!stylus-loader'
-      }
+      },
+      { test: /\.svg/, loader: 'svg-url-loader'}
     ]
   },
   plugins: [
