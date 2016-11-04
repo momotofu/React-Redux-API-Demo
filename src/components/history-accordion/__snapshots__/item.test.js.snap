@@ -1,9 +1,9 @@
-exports[`AccordionItem Should match snapshot 1`] = `
+exports[`AccordionItem component Should match snapshot 1`] = `
 <div
   className="Accordion-item">
   <div
-    className="Accordion-item-tab "
-    onClick={[Function handleItemClick]}>
+    className="Accordion-item-tab Accordion-item-tab-disabled"
+    onClick={null}>
     <div
       className="Accordion-item-tab-label">
       <div
@@ -17,194 +17,16 @@ exports[`AccordionItem Should match snapshot 1`] = `
           className="Accordion-item-tab-label-title">
           Tenrox-R1_1235
         </div>
-        <div
-          className="Accordion-item-tab-label-sub">
-          <span
-            className="Accordion-item-tab-label-owner">
-            samy
-          </span>
-           modified on 11/3/2016, 8:16:47 AM
-        </div>
       </div>
     </div>
     <div
       className="Accordion-item-tab-status">
-      <span />
-    </div>
-    <div
-      className="Accordion-item-tab-metrics">
-      <div
-        className="Accordion-item-tab-metric">
-        <div
-          className="Accordion-item-tab-metric-progress-bar ">
-          <span
-            className="Accordion-item-tab-metric-progress-bar-meter"
-            style={
-              Object {
-                "height": "100%"
-              }
-            } />
-        </div>
-      </div>
-      <div
-        className="Accordion-item-tab-metric">
-        <div
-          className="Accordion-item-tab-metric-progress-bar ">
-          <span
-            className="Accordion-item-tab-metric-progress-bar-meter"
-            style={
-              Object {
-                "height": "100%"
-              }
-            } />
-        </div>
-      </div>
-      <div
-        className="Accordion-item-tab-metric">
-        <div
-          className="Accordion-item-tab-metric-progress-bar ">
-          <span
-            className="Accordion-item-tab-metric-progress-bar-meter"
-            style={
-              Object {
-                "height": "100%"
-              }
-            } />
-        </div>
-      </div>
-      <div
-        className="Accordion-item-tab-metric">
-        <div
-          className="Accordion-item-tab-metric-progress-bar ">
-          <span
-            className="Accordion-item-tab-metric-progress-bar-meter"
-            style={
-              Object {
-                "height": "77.1%"
-              }
-            } />
-        </div>
-      </div>
-    </div>
-    <div
-      className="Accordion-item-tab-signifier-container">
-      <div
-        className="Accordion-item-tab-signifier entypo-down-open " />
+      <span
+        className="Accordion-item-tab-status-icon-pending entypo-arrows-ccw" />
     </div>
   </div>
   <div
     className="Accordion-item-description ">
-    <div
-      className="Accordion-item-description-card">
-      <div
-        className="Accordion-item-description-card-header">
-        <h1>
-          Metrics
-        </h1>
-      </div>
-      <div
-        className="Accordion-item-description-card-metric-row">
-        <span
-          className="Accordion-item-description-card-metric-progress-bar-icon entypo-thermometer" />
-        <div
-          className="Accordion-item-description-card-metric-progress-bar">
-          <span
-            className="Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-green"
-            data-label="test"
-            style={
-              Object {
-                "width": "64%"
-              }
-            } />
-        </div>
-      </div>
-      <div
-        className="Accordion-item-description-card-metric-row">
-        <span
-          className="Accordion-item-description-card-metric-progress-bar-icon entypo-tools" />
-        <div
-          className="Accordion-item-description-card-metric-progress-bar">
-          <span
-            className="Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-yellow"
-            data-label="maintainability"
-            style={
-              Object {
-                "width": "53%"
-              }
-            } />
-        </div>
-      </div>
-      <div
-        className="Accordion-item-description-card-metric-row">
-        <span
-          className="Accordion-item-description-card-metric-progress-bar-icon entypo-lock" />
-        <div
-          className="Accordion-item-description-card-metric-progress-bar">
-          <span
-            className="Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-green"
-            data-label="security"
-            style={
-              Object {
-                "width": "64%"
-              }
-            } />
-        </div>
-      </div>
-      <div
-        className="Accordion-item-description-card-metric-row">
-        <span
-          className="Accordion-item-description-card-metric-progress-bar-icon entypo-brush" />
-        <div
-          className="Accordion-item-description-card-metric-progress-bar">
-          <span
-            className="Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-green"
-            data-label="workmanship"
-            style={
-              Object {
-                "width": "72%"
-              }
-            } />
-        </div>
-      </div>
-    </div>
-    <div
-      className="Accordion-item-description-card">
-      <div
-        className="Accordion-item-description-card-header">
-        <h1>
-          Build
-        </h1>
-      </div>
-      <div
-        className="Accordion-item-description-card-button-container">
-        <div
-          className="Accordion-item-description-card-button">
-          <div
-            className="Icon Icon-large Icon-publish" />
-        </div>
-        <div
-          className="Accordion-item-description-card-button">
-          <div
-            className="Icon Icon-large Icon-bug" />
-        </div>
-      </div>
-      <div>
-        <span
-          className="Accordion-item-description-card-footer Accordion-item-description-card-footer-label">
-          Debug
-        </span>
-        <span
-          className="Accordion-item-description-card-footer Accordion-item-description-card-footer-label">
-          Release
-        </span>
-      </div>
-      <div
-        className="Accordion-item-description-card-footer">
-        <p>
-          11/3/2016, 8:16:47 AM
-        </p>
-      </div>
-    </div>
     <div
       className="Accordion-item-description-card">
       <div

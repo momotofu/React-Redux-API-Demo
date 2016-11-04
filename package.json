@@ -76,16 +76,17 @@
     "webpack-dev-server": "^1.7.0"
   },
   "jest": {
+    "verbose": true,
     "testEnvironment": "node",
     "collectCoverageFrom": [
-      "src/*.js"
+      "src/components/history-accordion/*.js", "src/actions/*.js"
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 10,
-        "functions": 10,
-        "lines": 10,
-        "statements": 10
+        "branches": 0,
+        "functions": 1,
+        "lines": 1,
+        "statements": 1
       }
     }
   }

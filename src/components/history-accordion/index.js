@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import AccordionItem from './item'
 
-require('./index.styl')
+if (process.env.NODE_ENV !== 'test') {
+  require('./index.styl')
+}
 
 const Accordion = ({accordionItems, onItemClick}) => (
   <div className='Accordion-container'>

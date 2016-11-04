@@ -11,9 +11,10 @@ global.window = doc.defaultView
 
 var item =
 {
+  "open": false,
   "itemID": 'a9asf98h98ahsfoi13',
   "buildID": "Tenrox-R1_1235",
-  "state": "pending",
+  "itemState": "pending",
   "owner": "samy",
   "timeStarted": 1478128607000,
   "percentageComplete": 77.1,
@@ -52,7 +53,7 @@ function handleItemClick(id) {
 }
 
 
-describe('AccordionItem', function() {
+describe('AccordionItem component', function() {
   it('Should match snapshot', function() {
     const wrapper = shallow(<AccordionItem
                                 key={item.itemID}

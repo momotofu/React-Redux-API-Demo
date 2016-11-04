@@ -1,0 +1,128 @@
+exports[`Accordion component Should match snapshot 1`] = `
+<div
+  className="Accordion-container">
+  <div
+    className="Accordion-container-labels">
+    <span>
+      Changelist/build
+    </span>
+    <div
+      className="Accordion-container-labels-metrics">
+      <span
+        className="Accordion-container-labels-metrics-label">
+        State
+      </span>
+      <span
+        className="Accordion-container-labels-metrics-label">
+        Metrics
+      </span>
+      <span
+        className="Accordion-container-labels-metrics-label">
+        Build
+      </span>
+      <span
+        className="Accordion-container-labels-metrics-label">
+        Unit Test
+      </span>
+      <span
+        className="Accordion-container-labels-metrics-label">
+        Func Test
+      </span>
+    </div>
+  </div>
+  <AccordionItem
+    build={
+      Object {
+        "isCompleted": true,
+        "timeStamp": 1478128607000
+      }
+    }
+    buildID="Tenrox-R1_1235"
+    functionalTest={
+      Object {
+        "coveredPercentage": 76,
+        "failed": 10,
+        "isCompleted": true,
+        "passed": 142,
+        "testsPassed": 68
+      }
+    }
+    itemID="a9asf98h98ahsfoi13"
+    itemState="pending"
+    metrics={
+      Object {
+        "isCompleted": true,
+        "maintainability": 53,
+        "security": 64,
+        "test": 64,
+        "workmanship": 72
+      }
+    }
+    onClick={[Function onClick]}
+    open={false}
+    owner="samy"
+    percentageComplete={77.1}
+    result={
+      Object {
+        "status": "find_issue"
+      }
+    }
+    timeStarted={1478128607000}
+    unitTest={
+      Object {
+        "coveredPercentage": 76,
+        "failed": 10,
+        "isCompleted": true,
+        "passed": 142,
+        "testsPassed": 73
+      }
+    } />
+  <AccordionItem
+    build={
+      Object {
+        "isCompleted": true,
+        "timeStamp": 1478128607000
+      }
+    }
+    buildID="Tenrox-R1_1235"
+    functionalTest={
+      Object {
+        "coveredPercentage": 76,
+        "failed": 10,
+        "isCompleted": true,
+        "passed": 142,
+        "testsPassed": 68
+      }
+    }
+    itemID="a9asf9asdf1398ahsfoi13"
+    itemState="pending"
+    metrics={
+      Object {
+        "isCompleted": true,
+        "maintainability": 53,
+        "security": 64,
+        "test": 64,
+        "workmanship": 72
+      }
+    }
+    onClick={[Function onClick]}
+    open={false}
+    owner="samy"
+    percentageComplete={77.1}
+    result={
+      Object {
+        "status": "find_issue"
+      }
+    }
+    timeStarted={1478128607000}
+    unitTest={
+      Object {
+        "coveredPercentage": 76,
+        "failed": 10,
+        "isCompleted": true,
+        "passed": 142,
+        "testsPassed": 73
+      }
+    } />
+</div>
+`;
