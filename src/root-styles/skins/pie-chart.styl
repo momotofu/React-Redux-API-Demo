@@ -16,15 +16,30 @@
     position relative
     display flex
     align-items center
+    margin-bottom 22px
     &:before
       content attr(data-pie)
-      color darkLettuce
       opacity .7
       position absolute
       z-index 1
-      top 50%
-      left 36%
+      top 52%
+      left 28%
       transform translateY(-50%)
+    &-green
+      .Pie-chart
+        fill lettuce
+      &:before
+        color darkLettuce
+    &-red
+      .Pie-chart
+        fill ketchup
+      &:before
+        color darkKetchup
+    &-yellow
+      .Pie-chart
+        fill electricity
+      &:before
+        color darkElectricity
 
   &-label
     opacity .7

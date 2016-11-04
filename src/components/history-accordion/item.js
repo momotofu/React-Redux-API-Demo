@@ -88,7 +88,9 @@ const AccordionItem = ({
             <div className='Accordion-item-description-card-header'>
               <h1>Unit Test</h1>
             </div>
-            <div className='Pie-chart-psuedo-container' data-pie={`${getChartPercentage(unitTest.passed, unitTest.failed, 100)}%`}>
+            <div
+              className={`Pie-chart-psuedo-container Pie-chart-psuedo-container-${getColor(getChartPercentage(unitTest.passed, unitTest.failed, 100))}`}
+              data-pie={`${getChartPercentage(unitTest.passed, unitTest.failed, 100)}%`}>
               <svg className='Pie-chart-container'
                 width='72'
                 height='72'
@@ -111,7 +113,9 @@ const AccordionItem = ({
             <div className='Accordion-item-description-card-header'>
               <h1>Functional Test</h1>
             </div>
-            <div className='Pie-chart-psuedo-container' data-pie={`${getChartPercentage(functionalTest.passed, functionalTest.failed, 100)}%`}>
+            <div
+              className={`Pie-chart-psuedo-container Pie-chart-psuedo-container-${getColor(getChartPercentage(functionalTest.passed, functionalTest.failed, 100))}`}
+              data-pie={`${getChartPercentage(functionalTest.passed, functionalTest.failed, 100)}%`}>
               <svg className='Pie-chart-container'
                 width='72'
                 height='72'
@@ -135,10 +139,18 @@ const AccordionItem = ({
 
 function getChartPercentage(passed, failed, normalizer, inverse) {
   var result = Math.round(((passed / (passed + failed) * normalizer) + (inverse ? (-normalizer): 0)))
-  console.log('result: ', result)
   if (result < 0)
     return result *-1
   else return result
+}
+
+function getColor(percentage) {
+  if (percentage >= 60)
+    return 'green'
+  else if (percentage >= 40)
+    return 'yellow'
+  else
+    return 'red'
 }
 
 function getIcon(itemState) {
@@ -182,23 +194,13 @@ function getItemState(itemState) {
 }
 
 function getCardProgressBar(percentageComplete, color, icon, label) {
-    function getColor() {
-      if (color != null)
-        return color
-      else if (percentageComplete >= 60)
-        return 'green'
-      else if (percentageComplete >= 40)
-        return 'yellow'
-      else
-        return 'red'
-    }
     if (icon) {
       return (
         <div className='Accordion-item-description-card-metric-row'>
           <span className={`Accordion-item-description-card-metric-progress-bar-icon ${icon}`} />
           <div className='Accordion-item-description-card-metric-progress-bar'>
             <span
-              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${getColor()}`}
+              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${color === null ? getColor(percentageComplete) : color}`}
               style={{width:`${percentageComplete}%`}}
               data-label={label}
               />
@@ -210,7 +212,7 @@ function getCardProgressBar(percentageComplete, color, icon, label) {
         <div className='Accordion-item-description-card-metric-row'>
           <div className='Accordion-item-description-card-metric-progress-bar'>
             <span
-              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${getColor()}`}
+              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${color === null ? getColor(percentageComplete) : color}`}
               style={{width:`${percentageComplete}%`}}
               data-label={label}
               />
