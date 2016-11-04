@@ -37,16 +37,16 @@ const AccordionItem = ({
       {itemState !== 'pending' &&
         <div className='Accordion-item-tab-metrics'>
           <div className='Accordion-item-tab-metric'>
-            {getProgressBar(0, 25, percentageComplete, metrics.isCompleted)}
+            {getTabProgressBar(0, 25, percentageComplete, metrics.isCompleted)}
           </div>
           <div className='Accordion-item-tab-metric'>
-            {getProgressBar(26, 50, percentageComplete, build.isCompleted)}
+            {getTabProgressBar(26, 50, percentageComplete, build.isCompleted)}
           </div>
           <div className='Accordion-item-tab-metric'>
-            {getProgressBar(51, 75, percentageComplete, unitTest.isCompleted)}
+            {getTabProgressBar(51, 75, percentageComplete, unitTest.isCompleted)}
           </div>
           <div className='Accordion-item-tab-metric'>
-            {getProgressBar(76, 100, percentageComplete, functionalTest.isCompleted)}
+            {getTabProgressBar(76, 100, percentageComplete, functionalTest.isCompleted)}
           </div>
         </div>
       }
@@ -56,10 +56,16 @@ const AccordionItem = ({
         </div>
       }
     </div>
-    <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>
-      <p className='Accordion-item-paragraph'>
-      </p>
-    </div>
+      <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>
+        {itemState !== 'pending' &&
+          <div className='Accordion-item-description-card'>
+            {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
+            {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
+            {getCardProgressBar(80, 'red', 'entypo-thermometer', 'test')}
+            {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
+          </div>
+        }
+      </div>
   </div>
 )
 
@@ -103,8 +109,28 @@ function getItemState(itemState) {
   }
 }
 
-function getProgressBar(min, threshold, percentageComplete, failed) {
-  console.log('failed: ', failed)
+function getCardProgressBar(percentageComplete, color, icon, label) {
+    if (icon) {
+      return (
+        <div className='Accordion-item-description-card-metric-row'>
+          <span className={icon} />
+          <div className='Accordion-item-description-card-metric-progress-bar' data-label={label}>
+            <span className={`Accordion-item-description-card-metric-progress-bar-meter 'Accordion-item-description-card-metric-progress-bar-meter-${color}`} style={{width:`${80}%`}}/>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className='Accordion-item-description-card-metric-row'>
+          <div className='Accordion-item-description-card-metric-progress-bar' data-label={label}>
+            <span className={`Accordion-item-description-card-metric-progress-bar-meter 'Accordion-item-description-card-metric-progress-bar-meter-${color}`} style={{width:`${80}%`}}/>
+          </div>
+        </div>
+      )
+    }
+}
+
+function getTabProgressBar(min, threshold, percentageComplete, failed) {
   if (percentageComplete >= threshold) {
     return (
       <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>

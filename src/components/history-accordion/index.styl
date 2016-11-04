@@ -1,5 +1,5 @@
 @import url('http://weloveiconfonts.com/api/?family=entypo')
-@import '../../styles/color'
+@import '../../root-styles/color'
 
 /* entypo */
 [class*="entypo-"]:before {
@@ -31,10 +31,145 @@
           text-align center
           &:first-child
             margin-right 43px
+
   &-item
     position relative
     background white
     margin -1px
+
+    &-tab
+      transition background-color .3s ease
+      align-items center
+      background white
+      border 1px solid steel
+      box-sizing border-box
+      display flex
+      justify-content space-between
+      min-height 5rem
+      position absolute
+      left 0
+      top 0
+      width 100%
+      z-index 10
+      &-label
+        white-space nowrap
+        position relative
+        display flex
+        width 100%
+        &-title
+          color charcoal
+          font-weight bold
+          font-size 15px
+          margin 2px 0  7px
+          display flex
+        &-sub
+          opacity .7
+          font-size 12px
+        &-owner
+          font-weight bold
+      &-container
+        display flex
+        flex-direction column
+      &-status
+        text-align center
+        min-width 72px
+        margin-right 38px
+        margin-left 50px
+        opacity .7
+        background transparent
+
+      &-metrics
+        display flex
+      &-metric
+        margin-left 18px
+        &-progress-bar
+          background-color white
+          height 18px
+          position relative
+          border 1px solid steel
+          border-radius 2px
+          padding 2px
+          width 48px
+          display flex
+          align-items flex-end
+          &-meter
+            opacity .7
+            display block
+            height 100%
+            border-radius 2px
+            background-color lettuce
+            width 100%
+            box-shadow
+              inset 0 2px 9px  rgba(255,255,255,0.3),
+              inset 0 -2px 6px rgba(0,0,0,0.4)
+            position relative
+            overflow hidden
+          &-failed
+            span
+              background-color ketchup
+
+      &-signifier
+        &-open
+          -ms-transform rotate(-180deg)
+          -webkit-transform rotate(-180deg)
+          transform rotate(-180deg)
+        &-container
+          text-align center
+          padding 1px 24px
+          cursor default
+          font-size 16px
+          &:hover
+            cursor pointer
+
+      &-status-icon
+        &-pending
+          animation spin 1s linear infinite
+          display block
+          padding 0 1px 1px 1px
+          width 16px
+          height 16px
+          text-align center
+          margin-left 1px
+        &-dot-1, &-dot-2, &-dot-3, &-pending
+          font-size 16px
+        &-dot-1, &-dot-2, &-dot-3
+          padding-right 1px
+        &-dot-1
+          animation dot .8s linear infinite
+        &-dot-2
+          animation dot .8s linear infinite
+          animation-delay .3s
+        &-dot-3
+          animation dot .8s linear infinite
+          animation-delay .6s
+
+      &-icon
+        margin-right 2px
+        text-align center
+        width 18px
+        display block
+        &-container
+          text-align center
+          padding 1px 21px
+          cursor default
+          font-size 16px
+          display flex
+          align-items center
+      &:hover
+        cursor pointer
+        background-color glass
+      &:active
+        transition none
+        background-color glassActive
+      &-disabled
+        justify-content flex-start
+        opacity .7
+        .Accordion-item-tab-status
+          margin-right 360px
+        &:hover, &:active
+          background white
+          cursor not-allowed
+
     &-description
       border 1px solid steel
       min-height 5rem
@@ -46,138 +181,68 @@
       &-open
         padding-top 16rem
         max-height 100%
-
-  &-item-tab
-    transition background-color .3s ease
-    align-items center
-    background white
-    border 1px solid steel
-    box-sizing border-box
-    display flex
-    justify-content space-between
-    min-height 5rem
-    position absolute
-    left 0
-    top 0
-    width 100%
-    z-index 10
-    &-label
-      white-space nowrap
-      overflow hidden
-      position relative
-      display flex
-      width 100%
-      &-title
-        color charcoal
-        font-weight bold
-        font-size 15px
-        margin 2px 0  7px
-        display flex
-      &-sub
-        opacity .7
-        font-size 12px
-      &-owner
-        font-weight bold
-    &-container
-      display flex
-      flex-direction column
-    &-metrics
-      display flex
-    &-status
-      text-align center
-      min-width 72px
-      margin-right 36px
-      margin-left 50px
-      opacity .7
-    &-metric
-      margin-left 18px
-      &-progress-bar
-        background-color white
-        height 18px
-        position relative
-        border 1px solid steel
-        border-radius 2px
-        padding 2px
-        width 48px
-        display flex
-        align-items flex-end
-        &-meter
-          opacity .7
-          display block
-          height 100%
-          border-radius 2px
-          background-color lettuce
-          width 100%
-          box-shadow
-            inset 0 2px 9px  rgba(255,255,255,0.3),
-            inset 0 -2px 6px rgba(0,0,0,0.4)
-          position relative
-          overflow hidden
-        &-failed
-          span
-            background-color electricity
-
-    &-signifier
-      &-open
-        -ms-transform rotate(-180deg)
-        -webkit-transform rotate(-180deg)
-        transform rotate(-180deg)
-      &-container
-        text-align center
-        padding 1px 24px
-        cursor default
-        font-size 16px
-        &:hover
-          cursor pointer
-
-    &-status-icon
-      &-pending
-        animation spin 1s linear infinite
+      &-card
         display block
-        padding 0 1px 1px 1px
-        width 16px
-        height 16px
-        text-align center
-        margin-left 1px
-      &-dot-1, &-dot-2, &-dot-3, &-pending
-        font-size 16px
-      &-dot-1, &-dot-2, &-dot-3
-        padding-right 1px
-      &-dot-1
-        animation dot .8s linear infinite
-      &-dot-2
-        animation dot .8s linear infinite
-        animation-delay .3s
-      &-dot-3
-        animation dot .8s linear infinite
-        animation-delay .6s
-
-    &-icon
-      margin-right 2px
-      text-align center
-      width 18px
-      display block
-      &-container
-        text-align center
-        padding 1px 21px
-        cursor default
-        font-size 16px
-        display flex
-        align-items center
-    &:hover
-      cursor pointer
-      background-color glass
-    &:active
-      transition none
-      background-color glassActive
-    &-disabled
-      justify-content flex-start
-      opacity .7
-      .Accordion-item-tab-status
-        margin-right 360px
-      &:hover, &:active
-        background white
-        cursor not-allowed
+        position relative
+        background #fff
+        border-radius 2px
+        overflow hidden
+        padding 1.5rem
+        border 1px solid steel
+        transition all .2s ease
+        &-metric
+          &-row
+            display flex
+            align-items center
+            margin-bottom 8px
+          &-progress-bar
+            @extends .Accordion-item-tab-metric-progress-bar
+            width 100%
+            margin-left 8px
+            &:before
+              content attr(data-label)
+              position absolute
+              z-index 1
+              font-weight bold
+              letter-spacing .4px
+              font-size 11px
+              left 7px
+              bottom 5px
+              color darkLettuce
+            &-meter
+              &-green
+                background-color lettuce
+                &:before
+                  color darkLettuce
+              &-red
+                background-color ketchup
+                &:before
+                  color darkKetchup
+              &-yellow
+                background-color lettuce
+                &:before
+                  color darkLettuce
+        &-header,
+        &-subheader
+          padding-bottom 1rem
+          font-size 15px
+        &-body
+          padding 0
+          font-size 12px
+        &-subfooter,
+        &-footer
+          font-size 11px
+          opacity .5
+          padding-top 1rem
+        &:hover
+          box-shadow -1px 0 1px 0 rgba(0,0,0,0.02) , 1px 0 1px 0 rgba(0,0,0,0.02) , 0 1px 1px 0 rgba(0,0,0,0.04)
+          -webkit-transform translate3d(0,-2px,0)
+          transform translate3d(0,-2px,0)
+          cursor pointer
+        &:active
+          transition none
+          box-shadow none
+          transform none
 
 // animations
 @keyframes spin
