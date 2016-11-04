@@ -48,10 +48,7 @@ class App extends Component {
           </button>
         </div>
         {isFetching && items.length === 0 &&
-          <h2>Loading...</h2>
-        }
-        {!isFetching && items.length === 0 &&
-          <h2>Empty.</h2>
+          <span className='entypo-hourglass' />
         }
         {items.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 , width: '100%'}}>
