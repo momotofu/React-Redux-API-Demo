@@ -59,10 +59,10 @@ const AccordionItem = ({
       <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
-            {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
-            {getCardProgressBar(80, 'green', 'entypo-tools', 'maintainability')}
-            {getCardProgressBar(80, 'red', 'entypo-lock', 'security')}
-            {getCardProgressBar(80, 'yellow', 'entypo-brush', 'workmanship')}
+            {getCardProgressBar(metrics.test, 'green', 'entypo-thermometer', 'test')}
+            {getCardProgressBar(metrics.maintainability, 'green', 'entypo-tools', 'maintainability')}
+            {getCardProgressBar(metrics.security, 'red', 'entypo-lock', 'security')}
+            {getCardProgressBar(metrics.workmanship, 'yellow', 'entypo-brush', 'workmanship')}
           </div>
         }
       </div>
