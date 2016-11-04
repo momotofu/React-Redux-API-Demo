@@ -235,6 +235,7 @@ function getCardProgressBar(percentageComplete, color, icon, label) {
 }
 
 function getTabProgressBar(min, threshold, percentageComplete, failed) {
+  console.log('failed: ', failed)
   if (percentageComplete >= threshold) {
     return (
       <div className={`Accordion-item-tab-metric-progress-bar ${!failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>

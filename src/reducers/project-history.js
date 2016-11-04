@@ -47,14 +47,14 @@ function projectHistory(state = {
             failed: item.unit_test.failed,
             coveredPercentage: item.unit_test.covered_percentage,
             testsPassed: item.unit_test.tests_passed,
-            isComplete: item.unit_test.is_complete
+            isCompleted: item.unit_test.is_completed
           },
           functionalTest: {
             passed: item.functional_test.passed,
             failed: item.functional_test.failed,
             coveredPercentage: item.functional_test.covered_percentage,
             testsPassed: item.functional_test.tests_passed,
-            isComplete: item.functional_test.is_complete
+            isCompleted: item.functional_test.is_completed
           },
           result: {
             ...item.result
