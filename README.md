@@ -35,6 +35,12 @@ Ren developer mode. This enables developer tools which show live updates to the 
 npm run dev
 ```
 
+# Run Tests
+
+```
+npm test
+```
+
 ## Example API Stub
 An array of objects similiar to the one below is consumed by the UI.
 
