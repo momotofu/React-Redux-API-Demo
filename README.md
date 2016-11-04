@@ -9,7 +9,7 @@ This app pulls from a mock/stubbed API using Apiary and populates a list with th
 
 ## Technologies used
 
-Redux, React, Webpack, Jest, Babel, ES6, JavaScript, Stylus, Node, JSX
+Redux, React, Webpack, Jest, Babel, ES6, JavaScript, Stylus, Node, JSX, isomorphic-fetch
 
 ## Getting started
 

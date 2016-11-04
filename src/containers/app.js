@@ -12,15 +12,16 @@ class App extends Component {
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { dispatch } = nextProps
+    dispatch(fetchHistoryIfNeeded())
+  }
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(fetchHistoryIfNeeded())
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { dispatch } = nextProps
-    dispatch(fetchHistoryIfNeeded())
-  }
 
   handleItemClick(id) {
     const { dispatch } = this.props
@@ -30,7 +31,7 @@ class App extends Component {
   handleRefreshClick(e) {
     e.preventDefault()
 
-    const { dispatch, selectedSubreddit } = this.props
+    const { dispatch } = this.props
     dispatch(invalidateRequest())
     dispatch(fetchHistoryIfNeeded())
   }
