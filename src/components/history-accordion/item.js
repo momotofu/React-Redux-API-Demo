@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 
-require('./index.styl')
-require('../../root-styles/skins/pie-chart.styl')
+if (process.env.NODE_ENV !== 'test') {
+  require('./index.styl')
+  require('../../root-styles/skins/pie-chart.styl')
+}
 
 class AccordionItem extends Component {
   getChartPercentage(passed, failed, normalizer, inverse) {
