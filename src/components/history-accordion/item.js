@@ -88,9 +88,21 @@ const AccordionItem = ({
             <div className='Accordion-item-description-card-header'>
               <h1>Unit Test</h1>
             </div>
-            <svg className='Pie-chart-container' width='72' height='72'>
-              <circle className='Pie-chart' strokeDasharray={`${getChartPercentage(unitTest.passed, unitTest.failed)}, 211`} r='34' cx='36' cy='36' />
-            </svg>
+            <div className='Pie-chart-psuedo-container' data-pie={`${getChartPercentage(unitTest.passed, unitTest.failed, 100)}%`}>
+              <svg className='Pie-chart-container'
+                width='72'
+                height='72'
+              >
+                <circle
+                  className='Pie-chart'
+                  strokeDasharray={`${getChartPercentage(unitTest.passed, unitTest.failed, 214, true)}, 211`}
+                  r='34'
+                  cx='36'
+                  cy='36'
+                />
+              </svg>
+              <p className='Pie-chart-label'>Tests passed</p>
+            </div>
             {getCardProgressBar(unitTest.coveredPercentage, null, 'entypo-network', 'code covered')}
           </div>
         }
@@ -99,15 +111,21 @@ const AccordionItem = ({
             <div className='Accordion-item-description-card-header'>
               <h1>Functional Test</h1>
             </div>
-            <svg className='Pie-chart-container' width='72' height='72'>
-              <circle
-                className='Pie-chart'
-                strokeDasharray={`${getChartPercentage(functionalTest.passed, functionalTest.failed)}, 211`}
-                r='34'
-                cx='36'
-                cy='36'
-              />
-            </svg>
+            <div className='Pie-chart-psuedo-container' data-pie={`${getChartPercentage(functionalTest.passed, functionalTest.failed, 100)}%`}>
+              <svg className='Pie-chart-container'
+                width='72'
+                height='72'
+              >
+                <circle
+                  className='Pie-chart'
+                  strokeDasharray={`${getChartPercentage(functionalTest.passed, functionalTest.failed, 214, true)}, 211`}
+                  r='34'
+                  cx='36'
+                  cy='36'
+                />
+              </svg>
+              <p className='Pie-chart-label'>Tests passed</p>
+            </div>
             {getCardProgressBar(functionalTest.coveredPercentage, null, 'entypo-network', 'code covered')}
           </div>
         }
@@ -115,8 +133,12 @@ const AccordionItem = ({
   </div>
 )
 
-function getChartPercentage(passed, failed) {
-  return (((passed + failed) / passed * 214) - 214)
+function getChartPercentage(passed, failed, normalizer, inverse) {
+  var result = Math.round(((passed / (passed + failed) * normalizer) + (inverse ? (-normalizer): 0)))
+  console.log('result: ', result)
+  if (result < 0)
+    return result *-1
+  else return result
 }
 
 function getIcon(itemState) {
@@ -201,19 +223,19 @@ function getCardProgressBar(percentageComplete, color, icon, label) {
 function getTabProgressBar(min, threshold, percentageComplete, failed) {
   if (percentageComplete >= threshold) {
     return (
-      <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
+      <div className={`Accordion-item-tab-metric-progress-bar ${!failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
         <span className='Accordion-item-tab-metric-progress-bar-meter' style={{height:`${100}%`}}></span>
       </div>
     )
   } else if (percentageComplete < min) {
    return (
-      <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
+      <div className={`Accordion-item-tab-metric-progress-bar ${!failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
         <span className='Accordion-item-tab-metric-progress-bar-meter' style={{height:`${0}%`}}></span>
       </div>
     )
   } else {
     return (
-      <div className={`Accordion-item-tab-metric-progress-bar ${failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
+      <div className={`Accordion-item-tab-metric-progress-bar ${!failed ? 'Accordion-item-tab-metric-progress-bar-failed' : ''}`}>
         <span className='Accordion-item-tab-metric-progress-bar-meter' style={{height:`${percentageComplete}%`}}></span>
       </div>
     )

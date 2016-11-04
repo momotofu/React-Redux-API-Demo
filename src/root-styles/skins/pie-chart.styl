@@ -11,3 +11,22 @@
     transform rotate(-90deg)
     border-radius 50%
     border 1px solid steel
+
+  &-psuedo-container
+    position relative
+    display flex
+    align-items center
+    &:before
+      content attr(data-pie)
+      color darkLettuce
+      opacity .7
+      position absolute
+      z-index 1
+      top 50%
+      left 36%
+      transform translateY(-50%)
+
+  &-label
+    opacity .7
+    max-width 44px
+    width 100%
