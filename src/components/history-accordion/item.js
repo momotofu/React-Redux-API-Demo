@@ -75,8 +75,20 @@ const AccordionItem = ({
               <h1>Build</h1>
             </div>
             <div className='Accordion-item-description-card-button-container'>
-              <div className='Accordion-item-description-card-button Icon-publish' />
-              <div className='Accordion-item-description-card-button Icon-bug' />
+              <div className='Accordion-item-description-card-button'>
+                <div className='Icon Icon-large Icon-publish' />
+              </div>
+              <div className='Accordion-item-description-card-button'>
+                <div className='Icon Icon-large Icon-bug' />
+              </div>
+            </div>
+            <div>
+              <span className='Accordion-item-description-card-footer Accordion-item-description-card-footer-label'>
+                Debug
+              </span>
+              <span className='Accordion-item-description-card-footer Accordion-item-description-card-footer-label'>
+                Release
+              </span>
             </div>
             <div className='Accordion-item-description-card-footer'>
               <p>{new Date(build.timeStamp).toLocaleString()}</p>
