@@ -177,9 +177,14 @@
       box-sizing border-box
       overflow hidden
       line-height 1.2
-      transition padding .3s ease
+      transition all .05s linear
+      opacity 0
+      max-height 60px
       &-open
-        padding-top 16rem
+        opacity 1
+        background-color glass
+        transition all .3s ease
+        padding-top 67px
         max-height 100%
       &-card
         display block
@@ -195,20 +200,26 @@
             display flex
             align-items center
             margin-bottom 8px
+            &:last-child
+              margin-bottom 0
           &-progress-bar
             @extends .Accordion-item-tab-metric-progress-bar
             width 100%
             margin-left 8px
-            &:before
-              content attr(data-label)
-              position absolute
-              z-index 1
-              font-weight bold
-              letter-spacing .4px
-              font-size 11px
-              left 7px
-              bottom 5px
-              color darkLettuce
+            &-icon
+              width 16px
+              text-align center
+            &-meter
+              &:before
+                content attr(data-label)
+                position absolute
+                z-index 1
+                font-weight bold
+                letter-spacing .4px
+                font-size 11px
+                left 5px
+                bottom 3px
+                color darkLettuce
             &-meter
               &-green
                 background-color lettuce
@@ -219,9 +230,9 @@
                 &:before
                   color darkKetchup
               &-yellow
-                background-color lettuce
+                background-color electricity
                 &:before
-                  color darkLettuce
+                  color darkElectricity
         &-header,
         &-subheader
           padding-bottom 1rem

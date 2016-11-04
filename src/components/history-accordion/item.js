@@ -60,9 +60,9 @@ const AccordionItem = ({
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
             {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
-            {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
-            {getCardProgressBar(80, 'red', 'entypo-thermometer', 'test')}
-            {getCardProgressBar(80, 'green', 'entypo-thermometer', 'test')}
+            {getCardProgressBar(80, 'green', 'entypo-tools', 'maintainability')}
+            {getCardProgressBar(80, 'red', 'entypo-lock', 'security')}
+            {getCardProgressBar(80, 'yellow', 'entypo-brush', 'workmanship')}
           </div>
         }
       </div>
@@ -113,17 +113,25 @@ function getCardProgressBar(percentageComplete, color, icon, label) {
     if (icon) {
       return (
         <div className='Accordion-item-description-card-metric-row'>
-          <span className={icon} />
-          <div className='Accordion-item-description-card-metric-progress-bar' data-label={label}>
-            <span className={`Accordion-item-description-card-metric-progress-bar-meter 'Accordion-item-description-card-metric-progress-bar-meter-${color}`} style={{width:`${80}%`}}/>
+          <span className={`Accordion-item-description-card-metric-progress-bar-icon ${icon}`} />
+          <div className='Accordion-item-description-card-metric-progress-bar'>
+            <span
+              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${color}`}
+              style={{width:`${80}%`}}
+              data-label={label}
+              />
           </div>
         </div>
       )
     } else {
       return (
         <div className='Accordion-item-description-card-metric-row'>
-          <div className='Accordion-item-description-card-metric-progress-bar' data-label={label}>
-            <span className={`Accordion-item-description-card-metric-progress-bar-meter 'Accordion-item-description-card-metric-progress-bar-meter-${color}`} style={{width:`${80}%`}}/>
+          <div className='Accordion-item-description-card-metric-progress-bar'>
+            <span
+              className={`Accordion-item-description-card-metric-progress-bar-meter Accordion-item-description-card-metric-progress-bar-meter-${color}`}
+              style={{width:`${80}%`}}
+              data-label={label}
+              />
           </div>
         </div>
       )
