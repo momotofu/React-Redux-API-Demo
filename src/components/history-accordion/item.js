@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 
 require('./index.styl')
+require('../../root-styles/skins/pie-chart.styl')
 
 const AccordionItem = ({
   buildID,
@@ -59,6 +60,9 @@ const AccordionItem = ({
       <div className={`Accordion-item-description ${open ? 'Accordion-item-description-open' : ''}`}>
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
+            <div className='Accordion-item-description-card-header'>
+              <h1>Metrics</h1>
+            </div>
             {getCardProgressBar(metrics.test, null, 'entypo-thermometer', 'test')}
             {getCardProgressBar(metrics.maintainability, null, 'entypo-tools', 'maintainability')}
             {getCardProgressBar(metrics.security, null, 'entypo-lock', 'security')}
@@ -67,17 +71,43 @@ const AccordionItem = ({
         }
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
-            <div className='Accordion-item-description-card-button Icon-bug'>
+            <div className='Accordion-item-description-card-header'>
+              <h1>Build</h1>
+            </div>
+            <div className='Accordion-item-description-card-button-container'>
+              <div className='Accordion-item-description-card-button Icon-publish' />
+              <div className='Accordion-item-description-card-button Icon-bug' />
+            </div>
+            <div className='Accordion-item-description-card-footer'>
+              <p>{new Date(build.timeStamp).toLocaleString()}</p>
             </div>
           </div>
         }
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
+            <div className='Accordion-item-description-card-header'>
+              <h1>Unit Test</h1>
+            </div>
+            <svg className='Pie-chart-container' width='72' height='72'>
+              <circle className='Pie-chart' strokeDasharray={`${getChartPercentage(unitTest.passed, unitTest.failed)}, 211`} r='34' cx='36' cy='36' />
+            </svg>
             {getCardProgressBar(unitTest.coveredPercentage, null, 'entypo-network', 'code covered')}
           </div>
         }
         {itemState !== 'pending' &&
           <div className='Accordion-item-description-card'>
+            <div className='Accordion-item-description-card-header'>
+              <h1>Functional Test</h1>
+            </div>
+            <svg className='Pie-chart-container' width='72' height='72'>
+              <circle
+                className='Pie-chart'
+                strokeDasharray={`${getChartPercentage(functionalTest.passed, functionalTest.failed)}, 211`}
+                r='34'
+                cx='36'
+                cy='36'
+              />
+            </svg>
             {getCardProgressBar(functionalTest.coveredPercentage, null, 'entypo-network', 'code covered')}
           </div>
         }
@@ -85,8 +115,8 @@ const AccordionItem = ({
   </div>
 )
 
-function log(prop) {
-  console.log(prop)
+function getChartPercentage(passed, failed) {
+  return (((passed + failed) / passed * 214) - 214)
 }
 
 function getIcon(itemState) {
