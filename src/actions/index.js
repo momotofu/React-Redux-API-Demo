@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
 /**
-  Accordion
+  History accordion
   */
 
 export const TOGGLE_ACCORDION_ITEM = 'TOGGLE_ACCORDION_ITEM'
