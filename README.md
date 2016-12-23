@@ -1,4 +1,4 @@
-Crossover Project
+UI / Redux sample code
 =========================
 
 Complexity distilled into pleasing design and elegant functionality.
