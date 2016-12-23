@@ -1,4 +1,4 @@
-UI / Redux sample code
+React / Redux sample code
 =========================
 
 Complexity distilled into pleasing design and elegant functionality.
