@@ -5,7 +5,7 @@ Complexity distilled into pleasing design and elegant functionality.
 
 ## Product description
 
-This app pulls from a mock/stubbed API using Apiary and populates a list with the mock data. The UI morphs into several states depending on the recieved props, and has realtime update capability. In production this app would require a websocket connection to provide realtime updates to the bars and charts, however, due to the time constraint I chose not to persue this feature. The update changelist button demonstrate async redux and redux-thunk fetures.
+This app pulls from a mock/stubbed API using Apiary and populates a list with the mock data. The UI morphs into several states depending on the recieved props, and has realtime update capability. In production this app would require a websocket connection to provide realtime updates to the bars and charts. The update changelist button demonstrate asyncronous redux and redux-thunk features.
 
 ## Technologies used
 
