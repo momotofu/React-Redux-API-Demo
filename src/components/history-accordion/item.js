@@ -24,9 +24,9 @@ class AccordionItem extends Component {
 
   getIcon(itemState) {
     if (itemState === 'rejected' || itemState === 'running' || itemState === 'accepted')
-      return  <span className="Accordion-item-tab-icon entypo-flow-parallel"></span>
+      return  <span className="Accordion-item-tab-icon icon-flow-parallel"></span>
     else
-      return  <span className="Accordion-item-tab-icon entypo-publish"></span>
+      return  <span className="Accordion-item-tab-icon icon-publish"></span>
   }
 
   getSubLabel(itemState, owner, timeStarted) {
@@ -48,13 +48,13 @@ class AccordionItem extends Component {
 
   getItemState(itemState) {
     if (itemState === 'pending') {
-      return <span className='Accordion-item-tab-status-icon-pending entypo-arrows-ccw'></span>
+      return <span className='Accordion-item-tab-status-icon-pending icon-arrows-ccw'></span>
     } else if (itemState === 'running') {
       return (
         <div>
-          <span className='Accordion-item-tab-status-icon-dot-1 entypo-dot'></span>
-          <span className='Accordion-item-tab-status-icon-dot-2 entypo-dot'></span>
-          <span className='Accordion-item-tab-status-icon-dot-3 entypo-dot'></span>
+          <span className='Accordion-item-tab-status-icon-dot-1 icon-dot'></span>
+          <span className='Accordion-item-tab-status-icon-dot-2 icon-dot'></span>
+          <span className='Accordion-item-tab-status-icon-dot-3 icon-dot'></span>
         </div>
       )
     } else {
@@ -152,7 +152,7 @@ class AccordionItem extends Component {
           }
           {this.props.itemState !== 'pending' &&
             <div className='Accordion-item-tab-signifier-container'>
-              <div className={`Accordion-item-tab-signifier entypo-down-open ${this.props.open ? 'Accordion-item-tab-signifier-open' : ''}`} />
+              <div className={`Accordion-item-tab-signifier icon-down-open ${this.props.open ? 'Accordion-item-tab-signifier-open' : ''}`} />
             </div>
           }
         </div>
@@ -162,10 +162,10 @@ class AccordionItem extends Component {
                 <div className='Accordion-item-description-card-header'>
                   <h1>Metrics</h1>
                 </div>
-                {this.getCardProgressBar(this.props.metrics.test, null, 'entypo-thermometer', 'test')}
-                {this.getCardProgressBar(this.props.metrics.maintainability, null, 'entypo-tools', 'maintainability')}
-                {this.getCardProgressBar(this.props.metrics.security, null, 'entypo-lock', 'security')}
-                {this.getCardProgressBar(this.props.metrics.workmanship, null, 'entypo-brush', 'workmanship')}
+                {this.getCardProgressBar(this.props.metrics.test, null, 'icon-thermometer', 'test')}
+                {this.getCardProgressBar(this.props.metrics.maintainability, null, 'icon-tools', 'maintainability')}
+                {this.getCardProgressBar(this.props.metrics.security, null, 'icon-lock', 'security')}
+                {this.getCardProgressBar(this.props.metrics.workmanship, null, 'icon-brush', 'workmanship')}
               </div>
             }
             {this.props.itemState !== 'pending' &&
@@ -216,7 +216,7 @@ class AccordionItem extends Component {
                   </svg>
                   <p className='Pie-chart-label'>Tests passed</p>
                 </div>
-                {this.getCardProgressBar(this.props.unitTest.coveredPercentage, null, 'entypo-network', 'code covered')}
+                {this.getCardProgressBar(this.props.unitTest.coveredPercentage, null, 'icon-network', 'code covered')}
               </div>
             }
             {this.itemState !== 'pending' &&
@@ -241,7 +241,7 @@ class AccordionItem extends Component {
                   </svg>
                   <p className='Pie-chart-label'>Tests passed</p>
                 </div>
-                {this.getCardProgressBar(this.props.functionalTest.coveredPercentage, null, 'entypo-network', 'code covered')}
+                {this.getCardProgressBar(this.props.functionalTest.coveredPercentage, null, 'icon-network', 'code covered')}
               </div>
             }
           </div>
