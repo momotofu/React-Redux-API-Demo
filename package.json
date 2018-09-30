@@ -7,7 +7,6 @@
     "test": "NODE_ENV=test jest --coverage",
     "watch:test": "jest --watch",
     "dev": "NODE_ENV=dev webpack-dev-server",
-    "prod": "NODE_ENV=production webpack-dev-server",
     "start": "NODE_ENV=production webpack"
   },
   "repository": {
