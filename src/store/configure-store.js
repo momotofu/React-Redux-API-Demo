@@ -1,5 +1,7 @@
-if (process.env.NODE_ENV === 'production') {
+//if (process.env.NODE_ENV === 'production') {
+  //console.log('ran')
   module.exports = require('./configure-store.prod')
-} else {
-  module.exports = require('./configure-store.dev')
-}
+//} else {
+  //console.log('ren')
+  //module.exports = require('./configure-store.dev')
+//}
