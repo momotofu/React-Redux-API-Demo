@@ -4,7 +4,8 @@
   "scripts": {
     "test": "NODE_ENV=test jest --coverage",
     "watch:test": "jest --watch",
-    "prod": "rm dist/*; NODE_ENV=production webpack; node server.js",
+    "build": "rm dist/*; NODE_ENV=production webpack",
+    "prod": "node server.js",
     "dev": "NODE_ENV=dev webpack-dev-server",
     "start": "NODE_ENV=production webpack"
   },
