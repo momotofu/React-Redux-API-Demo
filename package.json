@@ -6,6 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest --coverage",
     "watch:test": "jest --watch",
+    "prod": "NODE_ENV=production webpack; node server.js",
     "dev": "NODE_ENV=dev webpack-dev-server",
     "start": "NODE_ENV=production webpack"
   },
@@ -31,7 +32,7 @@
     "sinon": "^1.17.6"
   },
   "dependencies": {
-    "babel-core": "^6.7.7",
+    "babel-core": "^6.26.3",
     "babel-loader": "^6.2.4",
     "babel-plugin-check-es2015-constants": "^6.3.13",
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
@@ -43,7 +44,7 @@
     "babel-plugin-transform-es2015-for-of": "^6.3.13",
     "babel-plugin-transform-es2015-function-name": "^6.3.13",
     "babel-plugin-transform-es2015-literals": "^6.3.13",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-es2015-object-super": "^6.3.13",
     "babel-plugin-transform-es2015-parameters": "^6.3.13",
     "babel-plugin-transform-es2015-shorthand-properties": "^6.3.13",
@@ -55,12 +56,14 @@
     "babel-plugin-transform-es3-property-literals": "^6.5.0",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
     "babel-polyfill": "6.13.0",
-    "babel-preset-es2015": "6.14.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-2": "6.13.0",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.3.13",
     "css-loader": "^0.23.1",
     "es6-promise": "^4.0.5",
+    "express": "^4.16.3",
+    "express-promise-router": "^3.0.3",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
@@ -78,7 +81,8 @@
     "verbose": true,
     "testEnvironment": "node",
     "collectCoverageFrom": [
-      "src/components/history-accordion/*.js", "src/actions/*.js"
+      "src/components/history-accordion/*.js",
+      "src/actions/*.js"
     ],
     "coverageThreshold": {
       "global": {
