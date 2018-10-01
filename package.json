@@ -18,7 +18,7 @@
     "node": ">=0.12"
   },
   "engineStrict": true,
-  "devDependencies": {
+  "dependencies": {
     "ajv": "^6.5.4",
     "babel-core": "^6.26.3",
     "babel-jest": "^15.0.0",
@@ -47,9 +47,7 @@
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.9"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.1.9",
     "es6-promise": "^4.0.5",
     "express": "^4.16.3",
     "express-promise-router": "^3.0.3",
