@@ -28,7 +28,7 @@ export const INVALIDATE_REQUEST = 'INVALIDATE_REQUEST'
 function fetchHistory() {
   return dispatch => {
     dispatch(requestHistory())
-    return fetch('http://private-29abaa-tenrox.apiary-mock.com/changelist')
+    return fetch('https://private-29abaa-tenrox.apiary-mock.com/changelist')
       .then(response => response.json())
       .then(json => dispatch(receiveHistory(json)))
   }
