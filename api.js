@@ -6,12 +6,6 @@ const fs = require('fs')
  */
 module.exports = router => {
   router.get('/assets/js/:filename', async (req, res) => {
-    console.log('path: ', path.resolve(__dirname, `dist/${req.params.filename}`))
-    fs.readdir(__dirname, (err, files) => {
-      files.forEach(file => {
-        console.log(file);
-      });
-    })
     res.sendFile(path.resolve(__dirname, `dist/${req.params.filename}`))
   })
 
