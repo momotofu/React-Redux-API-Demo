@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var env = process.env.NODE_ENV
 const stylus = require('stylus')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = (env, options) => {
   return {
@@ -58,7 +59,8 @@ module.exports = (env, options) => {
     plugins: [
      new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(env)
-      })
+      }),
+      new UglifyJsPlugin()
     ]
   }
 }
