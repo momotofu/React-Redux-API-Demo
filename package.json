@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest --coverage",
     "watch:test": "jest --watch",
-    "prod": "NODE_ENV=production webpack; node server.js",
+    "prod": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=dev webpack-dev-server",
     "start": "NODE_ENV=production webpack"
   },
